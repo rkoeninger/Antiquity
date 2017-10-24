@@ -1,0 +1,27 @@
+/*
+Robert Koeninger
+Assignment 4
+Org or Prog Lang
+Nov 4
+*/
+
+((dict X)(kill X)(fail))
+((load Jay1))
+((load Jay2))
+
+/*
+predicate: validity
+    Holds when the given expression E, declaration D or assignment A
+    is valid.
+*/
+
+((validity E)(expression E))
+((validity D)(decl D))
+((validity A)(assignment A))
+
+/*
+predicate: typeof
+    Holds when T is the type of the expression E.
+*/
+
+((typeof (EHEAD | ETAIL) TYPE)(expression (EHEAD | ETAIL))())

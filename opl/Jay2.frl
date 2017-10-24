@@ -1,0 +1,172 @@
+/* some predicates that may help you with the homework.
+You can download this file from wwww.ececs.uc.edu/~aralescu/403/Jay1.frl
+I left out comments on purpose so that, by studying the predicates you will
+see what they do .... fill in comments for each so that you can remember */
+
+/* (decl T LIST) states that each element of the list LIST is of type T it 
+processes all such clauses to extract the type map; it assumes that 
+declarations were valid.  NONE ARE ACTUALLY TESTED!!!! */
+
+((decl intt (x y z)))
+((decl bool (a b c)))
+((decl intt (w t)))
+
+((memory (0 1 2 3 4 5 6 7 8 9 10) ))
+
+((run0)
+	(make_tm TM)
+	(state 0 TM S)
+	(new_state (z 10))
+	(new_state (x 2)))
+
+
+/* ((type_map)) produces the predicate (tm L) where L is a list of pairs, (type variable) extracted from (valid) declarations*/
+
+((type_map LL)(findall L1 ((decl T L)(append (T) L L1)) LL)(pp LL))
+
+((make_pairs1 (T) ()))
+((make_pairs1 (T V |L) ((T V) |LL))(make_pairs1 (T |L) LL))
+
+
+((make_pairs2 () ()))
+((make_pairs2 (H|T) TM)
+	(make_pairs1 H HTM)
+	(make_pairs2 T TTM)
+	(append HTM TTM TM))
+
+((make_tm TM)(type_map L)(make_pairs2 L TM)(addcl ((TypeMap TM)) ))
+
+((state 0 TM S)(TypeMap TM)(state0 TM S)(addcl ((state 0 S)) 0))
+
+((state0 () ()))
+((state0 ((T V)|L) ((V undef)|ST))(TypeMap TM)
+		(member (T V) TM)(state0 L ST))
+
+((new_state PAIR )
+	(state N S)(!)
+	(onion1 S PAIR S1)
+	(sum N 1 N1)
+	(addcl ((state N1 S1)) 0))
+
+((onion1 () L (L)))
+((onion1 ((VAR VAL)|L) (VAR VAL1) ((VAR VAL1)|L)))
+((onion1 (H | L) (VAR VAL1) (H | LL))(onion1 L (VAR VAL1) LL))
+
+((onion2 L () L))
+((onion2 L (H|T) LL)(onion1 L H L1)(onion2 L1 T LL))
+
+((myget _ () ()))
+((myget VAR ((VAR VAL)|_) VAL))
+((myget VAR (_|T) VAL)(myget VAR T VAL))
+
+
+((meaning E ME)(term E)(meaningT E ME))
+((meaning E  ME)
+	(expression E E1 T OP)
+	(meaningT T MT)
+	(meaning E1 ME1)
+	(ApplyBinary OP MT ME1 ME))
+
+((meaningT F MT)(factor F)(meaningF F MT))
+
+((meaningT T MT)
+	(term T T1 F OP)
+	(meaningT T1 M1)
+	(meaningF F MF)
+	(ApplyBinary OP M1 MF MT))
+
+
+((meaningF F MF)
+	(identifier F)
+	(state N S)(!)(pp N)
+	(myget F S MF))
+
+((meaningF F F)(literal F))
+
+((meaningF (E) ME)(meaning E ME))
+
+((ApplyBinary + V1 V2 V)(sum V1 V2 V))
+((ApplyBinary - V1 V2 V)(sum V V2 V1))
+((ApplyBinary * V1 V2 V)(times V1 V2 V))
+((ApplyBinary / V1 V2 V)(times V V2 V1))
+
+/* concrete syntax Assignment -> Identifier = Expression;*/
+
+((assignment (T = | S) T S)(identifier T)(expression S))
+
+/********  Expression *******/
+
+% Expression -> Term
+((expression E)(term E))
+
+% or, Expression -> Expression + Term
+((expression E E1 T +)
+	(append E1 (+ | T) E)
+	(expression E1)
+	(term T))
+
+% or, Expression -> Expression - Term
+((expression E E1 T -)
+	(append E1 (- | T) E)
+	(expression E1)
+	(term T))
+
+((expression (E) E1 T OP)(expression E E1 T OP))
+/******  Term *****/
+
+%Term -> Factor 
+((term T)(factor T))
+((term (T))(factor T))
+
+% Term -> Term * Factor
+((term T )
+	(append T1 (OP | F) T)
+	(member OP (* /) )
+	(term T1)
+	(factor F))
+
+% Term -> Term / Factor
+%%% ((term T T1 F /)
+%%% 	(append T1 (/ | F) T)
+%%% 	(term T1)
+%% 	(factor F))
+
+/********* factor *********/
+
+% factor -> identifier
+((factor F)(identifier F))
+
+% factor -> literal
+((factor F)(literal F))
+
+% factor -> (Expression)
+((factor (E))(expression E))
+
+/******** identifier : var names only one character lower case ****/
+
+((identifier X)(identifierS L)(member X L))
+
+((identifierS (a b c d e f g h i j k l m n o p q r s t u v w x y z) ))
+
+/**** literal : boolean turth values true, false; all integers *******/
+((literal true))
+((literal false))
+((literal X)(int X))  % note that this can only be used to test 
+                      % if X is an integer and not to produce an integer.
+
+
+/*****************  general purpose list processing predicates *********/
+((append () L L))
+((append (H|T) L (H|TT))(append T L TT))
+
+((member H (H|_)))
+((member X (H|T))(member X T))
+
+
+
+
+
+
+
+
+
