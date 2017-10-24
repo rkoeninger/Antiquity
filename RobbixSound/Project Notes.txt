@@ -1,0 +1,50 @@
+*** RobbixSound Project Notes ***
+
++++ Project Major Todos +++
+
+- Reconsider bit AND byte order
+
+- Finish CircularBuffer
+
+- Make all basic codecs:
+    - all other ITU recomendations including DPCM, ADPCM, IMA and all known
+      commerical implementations: Quicktime, Microsoft, 4x, etc.
+    - implement GSM 06.10
+
++++ Project-wide Conventions +++
+
+- 'x' variable almost universally means index.
+
+- Use -1 and null to show undefined properties, there should not be any
+  constants defined to show undefined properties.
+
+- Property maps should not contain Number objects that have -1 as a value to
+  show that that property is undefined. Null should be the value assigned to
+  that key, but -1 can be returned from methods that return primitives.
+
+- Property maps should not have a null key and the null key can be ignored.
+
+- When choosing if a stream transform should be run on inputs or outputs, favor
+  inputs, since they actively have a component working on the receiving end.
+  (Data is never over-read and translated due to limited space in the output).
+  This can also limit the number of buffers and conduits that need to be put in
+  place.
+
+- Compare a known to an unknown.
+
+- When booleans are used to represent byte order, true=msb/B false=lsb/B
+
+- Major data centres are supported by property maps so they can be easily
+  updated and adapted.
+
++++ Major Project Components +++
+
+- The I/O system completely separates decoded data from encoded data. This
+  makes working with audio data very simple, since client code always knows
+  if it has data it can work with or if it must decode data first. In addition,
+  codecs always convert encoded data of some format to decoded data and
+  decoded data to encoded data of a similar format. Recoders transform one
+  encoded data format to another format of the same encoding.
+
+- Robust tag parsing and modeling system allows easy use of almost every tag
+  element that there is and room for any tag element that can be concieved.

@@ -1,0 +1,16 @@
+<?xml?>
+<workspace>
+	<settings>
+		<label>RobbixSound</label>
+	</settings>
+	<users>
+		<user>
+			<path>RobbixSound.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>RobbixSound.jcp</path>
+		</project>
+	</projects>
+</workspace>

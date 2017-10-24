@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimatedCursor name="dock">
+	<Frame image="dock0.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock1.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock2.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock3.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock4.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock5.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock6.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+	<Frame image="dock7.bmp" duration="32" hotspotX="13" hotspotY="9"/>
+</AnimatedCursor>
