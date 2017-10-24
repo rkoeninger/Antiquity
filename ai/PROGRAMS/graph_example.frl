@@ -1,0 +1,16 @@
+
+/*** graph example ***/
+((connect a b))
+((connect a d))
+((connect a f))
+
+((connect b c))
+((connect b f))
+
+((connect d e))
+((connect f e))
+
+((connect c e))
+
+((path X Y)(connect X Y))
+((path X Y)(connect Y X))

@@ -1,0 +1,62 @@
+/* ((mother X Y)) holds if/when X is mother of Y */
+((mother Jane Mary))
+((mother Jane Bill))
+((mother Jane Trevor))
+((mother Jane Ann))
+((mother Julie Jane))
+((mother Monique Tom))
+
+
+
+/* ((father X Y)) holds if/when X is the father of Y */
+((father Tom Mary))
+((father Tom Bill))
+((father Tom Trevor))
+((father Tom Ann))
+
+
+
+/* ((parents X M F)) holds is/when M is the mother and F is the father of X */
+((parents Monique Silvia Bill))
+((parents X M F)
+      (mother M X)
+      (father F X))
+
+
+
+/* ((siblings  X Y)) holds if X and Yhave the same parents */
+((siblings X Y)
+      (parents X M F)
+      (parents Y M F)
+      (negg eq X Y))
+
+((siblings2 X X)(!)(fail))
+((siblings2 X Y)
+      (parents X M F)
+      (parents Y M F))
+
+/* ((grandmother G X)) holds if G is maternal grandmother: mother of mother */
+/* of X; of paternal grandmother: mother of father of X */
+
+((grandmother G X)(mother G Y )(mother Y X))
+((grandmother G X)(mother G Y)(father Y X))
+
+
+
+/*((grandmother2 G X)) same as grandmother but using parents predicate */
+((grandmother2 G X)(parents X M _)(mother G M))
+((grandmother2 G X)(parents X _ F)(mother G F))
+
+
+/* ((ancestor A X)) holds if A is an ancestor of X, that is a parent */
+/* or an ancestor of a parent. */
+
+((ancestor A X)(parents X A _))
+((ancestor A X)(parents X _ A))
+((ancestor A X)(parents X A1 _)(ancestor A A1))
+((ancestor A X)(parents X _ A1)(ancestor A A1))
+
+
+
+
+

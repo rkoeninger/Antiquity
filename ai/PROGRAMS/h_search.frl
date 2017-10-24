@@ -1,0 +1,132 @@
+((connect s e 2))
+((connect e f 5))
+((connect f g 2))
+((connect g t 2))
+((connect t d 3))
+((connect d c 3))
+((connect c b 2))
+((connect b a 2))
+((connect a s 2))
+
+((path X Y C)(connect X Y C))
+%((path X Y C)(connect Y X C))
+
+% (goal G) holds if G is the goal state
+
+((goal t))
+
+% (start S) holds if S is the start state
+((start s))
+
+/* (h N H) holds if H is the estimated cost from N to the goal 
+Note that we do not assign H for the start state*/
+((h a 5))
+((h b 4))
+((h c 4))
+((h d 3))
+((h g 2))
+((h f 4))
+((h e 7))
+((h t 0))  % t is the goal state
+
+/* (f N F) holds if F is the estimated cost from the Start state to the Goal state 
+passing through N: it is the sum of the cost of reaching N from S and the estimated cost 
+from N to the goal
+
+((f N F)(cost N C)(h N H)(sum C H F))
+
+(cost N C) is the cost of the current path from Start to N
+Note that this should never be called for N istantiated to the start node
+The predicate uses a technique called lemma generation: adding intermediate results into 
+the knowledge base.
+
+((cost N 0)(start N))
+((cost N C)(known_cost N C))
+((cost N C)
+    (path N1 N CN)
+    (cost N1 C1)
+    (sum CN C1 C)(addcl ((known_cost N C))))
+
+*/
+
+
+((paths N NL P)(isall NL X (path N X _ )(negg member X P) ))
+
+
+
+((new_paths () L PP () ))
+((new_paths (NN |ON) L PP (((NN HV L1)|PP)|OP))
+            (sum L 1 L1)
+            (heuristic NN L1 HV)
+            (new_paths ON L PP OP))
+
+
+((heuristic _ _ 10))
+
+
+/*
+(rem_dup X Y A B) which succeeds when A and B are lists of brancehs formed from the list 
+of brancehs X and Y respectively, by removing the longer of the two branches in X and Y 
+that go to the same node, if such a branch exists.
+*/
+((rem_dup () Y () Y))
+((rem_dup X () X () ))
+((rem_dup (((X Y Z)|P)|ON)  (((X Y1 Z1)|P1) |ON1)  (((X Y Z)|P)|R) R1)
+                    (less Z Z1)
+                    (rem_dup ON ON1 R R1))
+((rem_dup (((X Y Z)|P)|ON)  (((X Y1 Z1)|P1) |ON1)   R (((X Y1 1Z)|P1)|R1) )
+                    (less Z1  Z)
+                    (rem_dup ON ON1 R R1))
+
+((rem_dup (((X Y Z)|P)|ON)  (((X Y1 Z1)|P1) |ON1)  
+                                 (((X Y Z)|P)|R) (((X Y1 1Z)|P1)|R1) )
+                      (rem_dup ON ON1 R R1))
+
+
+
+
+((put_in_rest () Y Y))
+((put_in_rest (X|Y) Z L)
+            (put_in_list X Z L1)
+            (put_in_rest Y L1 L))
+
+
+/* where put_in_list inserts a branch in its proper position 
+in an ordered list of  branches.
+*/
+((put_in_list Y () (Y)))
+
+((put_in_list ((X Y Z)|R)  (((X1 Y1 Z1)|R1) |L)  (((X1 Y1 Z1)|R1)|NL) )
+                         (less Y1 Y) 
+                          (put_in_list ((X Y Z)|R) L NL))
+
+((put_in_list ((X Y Z)|R)  
+              (((X1 Y1 Z1)|R1) |L)  
+              (((X Y Z)|R) ((X1 Y1 Z1)|R1) | L) )
+                         
+     (negg less Y1 Y)) 
+
+%The predicate go is now as follows:
+
+(( go (((X HV L)|Y)|R) (X|Y)) 
+        (goal X))
+
+((go (X|Y) Z)
+    (move X NL)
+    (rem_dup NL Y NL1 Y1)
+    (put_in_rest NL1 Y1 NP)
+    (go NP Z))
+
+/* (move BRanch BRanchList) succeedswhen BRanchList is a sorted list of branched 
+obtained by expanding BRanch.
+*/
+
+((move  ((N HV L)| T) NL)
+                (paths N Y T)
+                (new_paths Y L (N|T) NL))
+
+
+% auxiliary predicates
+
+((member H (H|_)))
+((member E (H|T))(member E T))

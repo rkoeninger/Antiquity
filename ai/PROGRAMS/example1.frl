@@ -1,0 +1,31 @@
+/* ((male X)) holds if/when X is a male */
+
+((male Tim))
+
+
+
+/* ((female X)) holds if/when X is a female */
+((female Jill))
+((female Mary))
+
+
+
+/* ((married X Y)) holds if/when X is married to Y */
+/* NOTE: married IS NOT symmetric */
+((married John Jill))
+((married Bob Mary))
+
+
+
+/* ((spouse X Y)) holds if/when X is married to Y OR Y is married to X */
+/* NOTE: spouse IS  symmetric */
+((spouse X Y)(married X Y))
+((spouse X Y)(married Y X))
+
+?((pp "query to male predicate"))
+?((male X)(pp X))
+
+?((pp "query to married predicate"))
+?((married X Y)(pp)(p X Y))
+
+ 

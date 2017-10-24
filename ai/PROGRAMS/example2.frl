@@ -1,0 +1,17 @@
+
+
+/* ((likes X Y)) if/when X likes Y; NOT symmetric */
+((likes John Jill))
+((likes John Mary))
+((likes Bob Jill))
+((likes Bob Mary))
+((likes George Jill))
+((likes Jill George))
+
+
+
+/* ((friends X Y)) holds when X likes Y AND Y likes X */
+
+((friends X Y)
+      (likes X Y)
+      (likes Y X))

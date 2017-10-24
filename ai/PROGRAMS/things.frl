@@ -1,0 +1,30 @@
+/* code for lecture 2 example */
+
+/* bears are big */
+
+((big X)(bear X)) % clause 1 
+
+/* elephants are big */
+
+((big X)(elephant X)) % clause 2 
+
+/* cats are small */
+
+((small X)(cat X)) %clause 3 
+
+/* Teddy is a bear; Babar is an elephant; Fumiko is a cat */
+
+((bear Teddy))     % clause 4 
+((elephant Babar))     % clause 5
+((cat Fumiko))     % clause 6
+
+/* Bears are brown, cats are black; elephants are gray */
+
+((brown X)(bear X))     % clause 7
+((black X )(cat X))     % clause 8
+((gray X) (elephant X)) % clause 9
+
+/* Black or brown things are dark */
+
+((dark X )(brown X))     %  clause 10
+((dark X)(black X))     % clause 11

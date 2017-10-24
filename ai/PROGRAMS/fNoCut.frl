@@ -1,0 +1,13 @@
+/*** predicate f from Lecture Notes 4 
+without cut (with negg)
+***/
+
+ ((f X 2)
+        (less 10 X))
+
+ ((f X 3)
+            (negg less 10 X)
+            (less 5 X))
+
+ ((f X 0 )
+            (negg less 5 X)) 

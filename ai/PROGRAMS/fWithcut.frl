@@ -1,0 +1,12 @@
+
+((f1 X 2)
+        (less 10 X)
+        (!))
+
+((f1 X 3)
+         %%%  no need for this (negg less 10 X)
+         (less 5 X)
+        (!))
+
+ ((f1 X 0 ))
+        %%% no need for this  (negg less 5 X))

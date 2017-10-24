@@ -1,0 +1,6 @@
+export cln
+module_initialisation((pp "use cln to clean, i.e. delete, your knowledge base")(pp))
+
+((cln)(dict X)(kill X)(fail))
+((cln)(pp "done cleaning"))
+

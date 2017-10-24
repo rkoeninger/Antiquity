@@ -1,0 +1,20 @@
+?((reload list_pro))
+
+((split _ () () ())) 
+
+((split X (H|T) (H | SMALL) BIG) 
+	(less H X )(!) (split X T SMALL BIG)) 
+
+((split X (H|T) SMALL (H | BIG))(split X T SMALL BIG)) 
+
+% 2. quicksort: 
+
+
+
+
+((quicksort () () ))
+((quicksort (H | T) SORTED) 
+                    (split H T SMALL BIG) 
+                    (quicksort SMALL S) 
+                    (quicksort BIG B) 
+                    (append S (H|B) SORTED)) 

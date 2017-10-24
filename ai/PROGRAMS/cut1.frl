@@ -1,0 +1,44 @@
+((a 1))
+((a 2))
+((a 3))
+((a 4))
+
+?((pp " FIRST QUERY:")(p "?((a X)(a Y)(pp "before !" )(pp)(p  X Y)
+(pp)(pp)(pp "after the cut !")(!)(a X1 )(a Y1)(pp)(p  X1 Y1)(fail))
+"))
+
+
+?((a X)(a Y)(pp "before !" )(pp)(p  X Y)
+(pp)(pp)(pp "after the cut !")(!)(a X1 )(a Y1)(pp)(p  X1 Y1)(fail))
+
+
+?((pp)(pp)(p " SECOND QUERY:")(p "?((a X)(a Y)(pp)(pp)(pp  "before !" )(pp)(p  X Y)
+(pp)(pp)(pp "after the 1st cut !")(!)(a X1 )(pp)(p X Y X1)(pp)(pp  "after the 
+2nd cut ")(pp)(a Y1)(!)(pp)(p  X1 Y1)(fail))
+"))
+
+?((a X)(a Y)(pp)(pp)(pp  "before !" )(pp)(p  X Y)
+(pp)(pp)(pp "after the 1st cut !")(!)(a X1 )(pp)(p X Y X1)(pp)(pp  "after the 
+2nd cut ")(pp)(a Y1)(!)(pp)(p  X1 Y1)(fail))
+
+/* ?((pp " TRACE SECOND QUERY:")(p "tq((((a X)(a Y)(pp)(pp)(pp  "before !" )
+(pp)
+(p  X Y)
+(pp)(pp)(pp "after the 1st cut !")(!)(a X1 )(pp)(p X Y X1)(pp)
+(pp  "after the 
+2nd cut ")(pp)(a Y1)(!)(pp)(p  X1 Y1)(fail))
+"))
+
+tq((a X)(a Y)(pp)(pp)(pp  "before !" )(pp)(p X Y)
+(pp)(pp)(pp "after the 1st cut !")(!)(a X1 )(pp)(p X Y X1)(pp)
+(pp  "after the 
+2nd cut ")(pp)(a Y1)(!)(pp)(p  X1 Y1)(fail))
+
+*/
+
+?((pp)(pp)(p "THIRD QUERY: DOES USING MORE THAN ONE CUT (!) MAKE ANY DIFFERENCE?  TAKE OUT THE FIRST CUT: "))
+
+?((a X)(a Y)(pp)(pp)(pp  "before !" )(pp)(p  X Y)
+(pp)(pp)(pp "after the 1st cut !")(a X1 )(pp)(p X Y X1)(pp)(pp  "after the 
+2nd cut ")(pp)(a Y1)(!)(pp)(p  X1 Y1)(fail))
+

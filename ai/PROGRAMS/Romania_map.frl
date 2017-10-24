@@ -1,0 +1,31 @@
+((from Oradea Zerind 14))
+((from Oradea Sibiu 14.5))
+((from Zerind Arad 15))
+((from Arad Sibiu 15.5))
+((from Arad Timisoara 13))
+((from Sibiu Fagaras 14))
+((from Sibiu Rimnicu_Vilcea 11))
+((from Rimnicu_Vilcea Craiova 10))
+((from Pitesti Craiova 13))
+((from Rimnicu_Vilcea Pitesti 10))
+((from Pitesti Bucharest 8))
+((from Timisoara Lugoj 13))
+((from Lugoj Mehadia 11.5))
+((from Mehadia Dobreta 13))
+((from Dobreta Craiova 13))
+((from Bucharest Giurgiu 12))
+((from Urziceni Bucharest 13))
+((from Urziceni Hirsova 13))
+((from Hirsova Eforie 13.5))
+((from Vaslui Urziceni 13))
+((from Iasi Vaslui 10))
+((from Neamt Vaslui 10))
+
+%((connected X Y C)(from X Y C))
+%((connected X Y C)(from Y X C))
+
+((path X Y) (from X Y _))
+((path X Y)(from Y X _))
+
+
+

@@ -1,0 +1,29 @@
+((add_no_dup E OLD _ OLD)
+    (member E OLD)
+    (!))
+
+((add_no_dup _ OLD POS OLD)
+    (length OLD X)
+    (less X POS)
+    (!))
+((add_no_dup E OLD POS NEW)
+    (sum POS -1 LENGTH)
+    (positive LENGTH)   % prevents invoking length with a negative 2nd argument
+    (length SUB1 LENGTH)
+    (append SUB1 SUB2 OLD)
+    (append SUB1 (E|SUB2) NEW))
+
+((positive L)(less L 0)(!)(fail))
+((positive _))
+
+/*    (append SUB1 (E) SUB3)
+    (append SUB3 SUB2 NEW)
+    (!))
+
+*/
+
+
+((new_add_no_dup E O P O)(member E O)(!))
+((new_add_no_dup E () _ ()))
+((new_add_no_dup E O 1 (E|O))(!))
+((new_add_no_dup E (H|T) P (H|T1))(sum P -1 P1)(new_add_no_dup E T P1 T1))

@@ -1,0 +1,11 @@
+((f 1 one))
+((f X two)(s 1 X))
+((f X three)(s 1 Y)(s Y X))
+((f X N)(s 1 X1)(s X1 X2)(s X2 X)(f X N))
+
+
+((s 0 1))
+((s X N)(sum X1 1 X)(s X1 N1)(sum N1 1 N))
+
+
+

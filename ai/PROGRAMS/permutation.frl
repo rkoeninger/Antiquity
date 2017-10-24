@@ -1,0 +1,12 @@
+((permutation () ()))
+
+%((permutation (X Y) (X Y)))
+%((permutation (X Y) (Y X) )(!))
+
+((permutation (H|L) (H|PT))
+        (permutation L PT))
+
+((permutation (H1 H2 | L) (H2 |PL))
+	(permutation (H1|L) PL))
+
+
