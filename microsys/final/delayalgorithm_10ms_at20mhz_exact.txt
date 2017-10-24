@@ -1,0 +1,12 @@
+    org 500h
+Wait10ms
+    movlw     0xed
+    movwf     Delay1
+    movlw     0x41
+    movwf     Delay2
+DelayLoop:
+    decfsz    Delay1,f
+    goto      DelayLoop
+    decfsz    Delay2,f
+    goto      DelayLoop
+    retlw     0x00

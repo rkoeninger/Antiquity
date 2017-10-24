@@ -1,0 +1,798 @@
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;******************************************************************************
+                      00002 ;                                                                             *
+                      00003 ;   Filename:                stopwatch.asm                                    *
+                      00004 ;   Date:                    Monday, June 8, 2009                             *
+                      00005 ;   Author:                  Robert Koeninger                                 *
+                      00006 ;   Class:                   Microsystem Design and Programming               *
+                      00007 ;                            Spring Quarter 2009                              *
+                      00008 ;                                                                             *
+                      00009 ;******************************************************************************
+                      00010 ;
+                      00011 ;
+                      00012 ;
+                      00013 ;******************************************************************************
+                      00014 
+Warning[205]: Found directive in column 1. (list)
+                      00015 list p=16f887
+                      00016 #include <p16F887.inc>
+                      00001         LIST
+                      00002 ; P16F887.INC  Standard Header File, Version 1.00    Microchip Technology, Inc.
+                      00617         LIST
+Warning[205]: Found directive in column 1. (__CONFIG)
+2007   20C4           00017 __CONFIG _CONFIG1, _LVP_OFF & _FCMEN_OFF & _IESO_OFF & _BOR_OFF &_CPD_OFF & _CP_OFF & _MCLRE_OFF & _PWRT
+                            E_ON & _WDT_OFF & _INTRC_OSC_NOCLKOUT
+Warning[205]: Found directive in column 1. (__CONFIG)
+2008   3EFF           00018 __CONFIG _CONFIG2, _WRT_OFF & _BOR21V
+                      00019 
+Warning[205]: Found directive in column 1. (cblock)
+                      00020 cblock     0x20
+  00000020            00021     Delay1                   ; Define variables to hold delay loop counters
+  00000021            00022     Delay2                   ; Define variables to hold delay loop counters
+  00000022            00023     Delay3                   ; Define variables to hold delay loop counters
+  00000023            00024     TimerDisplay             ; Holds the LED values while the timer is running
+  00000024            00025     TimeTens                 ; The timer ten's place
+  00000025            00026     TimeOnes                 ; The timer one's place
+  00000026            00027     TimeTenths               ; The timer tenth's place
+  00000027            00028         TimeHundredths           ; The timer hundredth's place
+  00000028            00029     LookingFor               ; A marker to keep track of whether a button press
+                      00030                              ; is "fresh" or if the button is still depressed
+                      00031                              ; from the last time we checked
+  00000029            00032     SubReturnValue           ; Since we can't use a btfss/btfsc instruction on
+                      00033                              ; the working register, here's a variable to store
+                      00034                              ; the return value and do the check
+Warning[205]: Found directive in column 1. (ENDC)
+                      00035 endc
+                      00036 
+                      00037 ; Subroutine Wait10ms
+                      00038 ; Loops with fine-tuned counters to approximate 10ms (1/100 a sec)
+                      00039 ; as closely as possible. Always returns, leaving 0 in the working register
+0060                  00040     org 60h
+0060                  00041 Wait10ms
+0060   30FB           00042     movlw   0xfb             ; Loop counters have been fine-tuned to get
+0061   00A0           00043     movwf   Delay1           ; the most accurate wait time possible
+0062   300D           00044     movlw   0x0d
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0063   00A1           00045     movwf   Delay2
+0064                  00046 DelayLoop:
+0064   0BA0           00047     decfsz  Delay1,f
+0065   2864           00048     goto    DelayLoop        ; Inner loop - runs 251 times first round,
+0066   0BA1           00049     decfsz  Delay2,f         ; 256 times every following round
+0067   2864           00050     goto    DelayLoop        ; Outer loop - runs 13 times
+0068   3400           00051     retlw   0x00
+                      00052 
+                      00053 ; Subroutine Wait1s
+                      00054 ; Calls Wait10ms in a loop 100 times
+0070                  00055     org 70h
+0070                  00056 Wait1s
+0070   3064           00057     movlw   0x64             ; Loop 100 times
+0071   00A2           00058     movwf   Delay3
+Warning[207]: Found label after column 1. (Loop100)
+0072                  00059     Loop100:
+0072   2060           00060     call    Wait10ms
+Message[305]: Using default destination of 1 (file).
+0073   0BA2           00061     decfsz  Delay3
+0074   2872           00062     goto    Loop100
+0075   3400           00063     retlw   0x00
+                      00064 
+                      00065 ; Subroutine Wait5s
+                      00066 ; Calls Wait10ms in a loop 500 times
+0080                  00067     org 80h
+0080                  00068 Wait5s
+0080   3064           00069     movlw   0x64             ; Loop 100 times,
+0081   00A2           00070     movwf   Delay3           ; calling 5 times each loop
+Warning[207]: Found label after column 1. (Loop500)
+0082                  00071     Loop500:
+0082   2060           00072     call    Wait10ms
+0083   2060           00073     call    Wait10ms
+0084   2060           00074     call    Wait10ms
+0085   2060           00075     call    Wait10ms
+0086   2060           00076     call    Wait10ms
+Message[305]: Using default destination of 1 (file).
+0087   0BA2           00077     decfsz  Delay3
+0088   2882           00078     goto    Loop500
+0089   3400           00079     retlw   0x00
+                      00080 
+                      00081 ; Subroutine IncrementTime
+                      00082 ; Increments the time counters by 1/100 sec. Handles conditions where
+                      00083 ; the counters "roll-over" - for instance, when the hundredths counter
+                      00084 ; reachs 100, it is cleared and the seconds counter is incremented.
+                      00085 ; Returns 0x01 if the ten's place carries over, 0x00 normally
+00A0                  00086     org 0a0h
+00A0                  00087 IncrementTime
+Message[305]: Using default destination of 1 (file).
+00A0   0AA7           00088     incf    TimeHundredths
+00A1   1003           00089     bcf     STATUS,C         ; Test to see if we've reached
+00A2   0827           00090     movfw   TimeHundredths   ; 10 hundredths by adding
+00A3   3EF6           00091     addlw   0xf6             ; 246 to the hundredths and check
+00A4   1C03           00092     btfss   STATUS,C         ; for overflow
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00A5   3400           00093     retlw   0x00             ; If no rollover, just return
+00A6   01A7           00094     clrf    TimeHundredths   ; If there is rollover, clear
+Message[305]: Using default destination of 1 (file).
+00A7   0AA6           00095     incf    TimeTenths       ; the hundredths and increment tenths
+00A8   1003           00096     bcf     STATUS,C         ; Repeat the rollover check
+00A9   0826           00097     movfw   TimeTenths
+00AA   3EF6           00098     addlw   0xf6
+00AB   1C03           00099     btfss   STATUS,C
+00AC   3400           00100     retlw   0x00             ; If no rollover, just return
+00AD   01A6           00101     clrf    TimeTenths
+Message[305]: Using default destination of 1 (file).
+00AE   0AA5           00102     incf    TimeOnes         ; Increment ones if the tenths rollover
+00AF   1003           00103     bcf     STATUS,C         ; Repeat the rollover check
+00B0   0825           00104     movfw   TimeOnes
+00B1   3EF6           00105     addlw   0xf6
+00B2   1C03           00106     btfss   STATUS,C
+00B3   3400           00107     retlw   0x00             ; If no rollover, just return
+00B4   01A5           00108     clrf    TimeOnes
+Message[305]: Using default destination of 1 (file).
+00B5   0AA4           00109     incf    TimeTens         ; Increment tens if the ones rollover
+00B6   1003           00110     bcf     STATUS,C         ; Repeat the rollover check
+00B7   0824           00111     movfw   TimeTens
+00B8   3EF6           00112     addlw   0xf6
+00B9   1C03           00113     btfss   STATUS,C         ; If there is rollover here, we have a problem...
+00BA   3400           00114     retlw   0x00
+00BB   01A4           00115     clrf    TimeTens         ; Time rolls over to 0
+00BC   3401           00116     retlw   0x01             ; Report the rollover
+                      00117  
+                      00118 ; Subroutine CheckButton
+                      00119 ; Encapsulates a check for the button being pressed and a check that
+                      00120 ; the button is not just still pressed from last button push. If the button
+                      00121 ; has been freshly pressed, the subroutine returns, leaving a 0x01 in the
+                      00122 ; working register.
+00D0                  00123     org 0d0h
+00D0                  00124 CheckButton
+00D0   1828           00125     btfsc   LookingFor,0
+00D1   28D6           00126     goto    LookingFor1
+00D2                  00127 LookingFor0:                 ; The switch was not pressed last time
+00D2   1806           00128     btfsc   PORTB,0          ; Is the switch pressed now (0)?
+00D3   3400           00129     retlw   0x00             ; No  - just move along
+00D4   1428           00130     bsf     LookingFor,0     ; Yes - the button has been freshly pressed
+00D5   3401           00131     retlw   0x01             ; Report event activation
+00D6                  00132 LookingFor1:                 ; The switch was pressed last time
+00D6   1806           00133     btfsc   PORTB,0          ; Is the switch pressed now (0)?
+00D7   1028           00134     bcf     LookingFor,0     ; No  - mark that next press (0), is a fresh press
+00D8   3400           00135     retlw   0x00             ; Yes - just move along
+                      00136 
+                      00137 ; Program Body
+                      00138 ; The main body starts by initializing the input and output pins, then moves to
+                      00139 ; the waiting state. In the waiting state, it loops indefinitely, flashing a
+                      00140 ; pattern on the LEDs. When the button is pushed, it moves to the running state
+                      00141 ; where it counts off time in 10ms increments and rotates an LED every second.
+                      00142 ; When the button is pushed again, it moves to the display state, where it
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00143 ; shows a blank display for 1 sec, shows the ten's and one's place as BCDs for
+                      00144 ; 5 sec, blank again for 1 sec, shows the tenth's and hundredth's place as BCDs
+                      00145 ; for 5 sec, blank again for 1 sec and then returns to the waiting state.
+0000                  00146     org 0
+0000                  00147 Init:
+0000   1683           00148     bsf     STATUS,RP0       ; Select Register Bank 1
+0001   3001           00149     movlw   0x01
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0002   0086           00150     movwf   TRISB            ; Make RB0 input
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0003   0188           00151     clrf    TRISD            ; Make PortD all output
+0004   1703           00152     bsf     STATUS,RP1       ; Select Register Bank 3
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0005   0189           00153     clrf    ANSELH           ; Make PortB all digitial (RB0 is digital switch)
+0006   1283           00154     bcf     STATUS,RP0       ; Select Register Bank 0
+0007   1303           00155     bcf     STATUS,RP1
+0008   01A8           00156     clrf    LookingFor       ; Looking for button press (0) initially
+0009                  00157 TimerWait:
+0009   3055           00158     movlw   0x55
+000A   0088           00159     movwf   PORTD            ; Initialize timer display for waiting state
+000B                  00160 TimerWaitingLoop:
+000B   2060           00161     call    Wait10ms         ; Wait a small amount of time
+000C   2060           00162     call    Wait10ms
+000D   2060           00163     call    Wait10ms
+000E   2060           00164     call    Wait10ms
+000F   2060           00165     call    Wait10ms
+0010   30FF           00166     movlw   0xff             ; Refresh waiting display
+Message[305]: Using default destination of 1 (file).
+0011   0688           00167     xorwf   PORTD
+0012   20D0           00168     call    CheckButton
+0013   00A9           00169     movwf   SubReturnValue
+0014   1C29           00170     btfss   SubReturnValue,0 ; Skip to TimerStart if button pressed
+0015   280B           00171     goto    TimerWaitingLoop ; Keep waiting for button to be pressed
+0016                  00172 TimerRun:
+0016   01A4           00173     clrf    TimeTens         ; Clear time variables
+0017   01A5           00174     clrf    TimeOnes
+0018   01A6           00175     clrf    TimeTenths
+0019   01A7           00176     clrf    TimeHundredths
+001A   3001           00177     movlw   0x01
+001B   00A3           00178     movwf   TimerDisplay     ; Re-initialize timer display
+001C                  00179 TimerRunningLoop:            ; Loop while counting (loop every 1s)
+001C   0823           00180     movfw   TimerDisplay     ; Refresh the LEDs
+001D   0088           00181     movwf   PORTD
+001E   3064           00182     movlw   0x64             ; Inner loop to run 100 times
+001F   00A2           00183     movwf   Delay3
+0020                  00184 InnerLoop:                   ; Inner loop (loop every 10ms or 1/100 sec)
+0020   20A0           00185     call    IncrementTime    ; Increment timers by 1/100th sec
+0021   00A9           00186     movwf   SubReturnValue
+0022   1829           00187     btfsc   SubReturnValue,0 ; If the timer has passed 99.9s
+0023   2809           00188     goto    TimerWait        ; Go back to the waiting to start state
+Message[305]: Using default destination of 1 (file).
+0024   0BA2           00189     decfsz  Delay3
+0025   282B           00190     goto    WaitAndCheckButton
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0026                  00191 RotateDisplay:
+0026   1003           00192     bcf     STATUS,C
+0027   0DA3           00193     rlf     TimerDisplay,f   ; Rotate display word
+0028   1803           00194     btfsc   STATUS,C         ; Check for carry
+0029   1423           00195     bsf     TimerDisplay,0   ; If there was carry, add the bit on the end
+002A   281C           00196     goto    TimerRunningLoop ; Continue looping
+002B                  00197 WaitAndCheckButton:
+002B   2060           00198     call    Wait10ms         ; Wait 1/100th sec
+002C   20D0           00199     call    CheckButton      ; Check for a button push
+002D   00A9           00200     movwf   SubReturnValue   ; If the button was pushed,
+002E   1C29           00201     btfss   SubReturnValue,0 ; skip to DisplayTime
+002F   2820           00202     goto    InnerLoop        ; If button not pressed, keep looping
+0030                  00203 DisplayTime:
+0030   0188           00204     clrf    PORTD            ; Clear display
+0031   2070           00205     call    Wait1s           ; Show blank display for 1 sec
+0032   0EA4           00206     swapf   TimeTens,f       ; Swap the ten's place 4 bits over and...
+0033   0824           00207     movfw   TimeTens
+Message[305]: Using default destination of 1 (file).
+0034   07A5           00208     addwf   TimeOnes         ; combine the ten's and one's place as BCDs
+0035   0825           00209     movfw   TimeOnes
+0036   0088           00210     movwf   PORTD            ; Show the ten's and one's place as BCD
+0037   2080           00211     call    Wait5s           ; Show for 5 sec
+0038   0188           00212     clrf    PORTD            ; Clear display
+0039   2070           00213     call    Wait1s           ; Show blank display for 1 sec
+003A   0EA6           00214     swapf   TimeTenths,f     ; Swap the tenth's place 4 bits over and...
+003B   0826           00215     movfw   TimeTenths
+Message[305]: Using default destination of 1 (file).
+003C   07A7           00216     addwf   TimeHundredths   ; combine the tenth's and hundredth's place
+003D   0827           00217     movfw   TimeHundredths
+003E   0088           00218     movwf   PORTD            ; Show the tenth's and hundredth's place as BCD
+003F   2080           00219     call    Wait5s           ; Show for 5 sec
+0040   0188           00220     clrf    PORTD            ; Clear display
+0041   2070           00221     call    Wait1s           ; Show blank display for 1 sec
+0042   2809           00222     goto    TimerWait        ; Go back to waiting state
+                      00223     end                      ; Program runs forever, end is never reached
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ABDEN                             00000000
+ABDOVF                            00000007
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+ANS0                              00000000
+ANS1                              00000001
+ANS10                             00000002
+ANS11                             00000003
+ANS12                             00000004
+ANS13                             00000005
+ANS2                              00000002
+ANS3                              00000003
+ANS4                              00000004
+ANS5                              00000005
+ANS6                              00000006
+ANS7                              00000007
+ANS8                              00000000
+ANS9                              00000001
+ANSEL                             00000188
+ANSELH                            00000189
+BAUDCTL                           00000187
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRG0                              00000000
+BRG1                              00000001
+BRG10                             00000002
+BRG11                             00000003
+BRG12                             00000004
+BRG13                             00000005
+BRG14                             00000006
+BRG15                             00000007
+BRG16                             00000003
+BRG2                              00000002
+BRG3                              00000003
+BRG4                              00000004
+BRG5                              00000005
+BRG6                              00000006
+BRG7                              00000007
+BRG8                              00000000
+BRG9                              00000001
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BRGH                              00000002
+C                                 00000000
+C1CH0                             00000000
+C1CH1                             00000001
+C1IE                              00000005
+C1IF                              00000005
+C1OE                              00000005
+C1ON                              00000007
+C1OUT                             00000006
+C1POL                             00000004
+C1R                               00000002
+C1RSEL                            00000005
+C1SEN                             00000005
+C2CH0                             00000000
+C2CH1                             00000001
+C2IE                              00000006
+C2IF                              00000006
+C2OE                              00000005
+C2ON                              00000007
+C2OUT                             00000006
+C2POL                             00000004
+C2R                               00000002
+C2REN                             00000004
+C2RSEL                            00000004
+C2SYNC                            00000000
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+CKE                               00000006
+CKP                               00000004
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CM1CON0                           00000107
+CM2CON0                           00000108
+CM2CON1                           00000109
+CREN                              00000004
+CSRC                              00000007
+CheckButton                       000000D0
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+D_A                               00000005
+Delay1                            00000020
+Delay2                            00000021
+Delay3                            00000022
+DelayLoop                         00000064
+DisplayTime                       00000030
+ECCPAS                            0000009C
+ECCPAS0                           00000004
+ECCPAS1                           00000005
+ECCPAS2                           00000006
+ECCPASE                           00000007
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDAT                             0000010C
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+FVREN                             00000000
+GCEN                              00000007
+GIE                               00000007
+GO                                00000001
+GO_DONE                           00000001
+HTS                               00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IOCB                              00000096
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+IOCB0                             00000000
+IOCB1                             00000001
+IOCB2                             00000002
+IOCB3                             00000003
+IOCB4                             00000004
+IOCB5                             00000005
+IOCB6                             00000006
+IOCB7                             00000007
+IRCF0                             00000004
+IRCF1                             00000005
+IRCF2                             00000006
+IRP                               00000007
+IncrementTime                     000000A0
+Init                              00000000
+InnerLoop                         00000020
+LTS                               00000001
+LookingFor                        00000028
+LookingFor0                       000000D2
+LookingFor1                       000000D6
+Loop100                           00000072
+Loop500                           00000082
+MC1OUT                            00000007
+MC2OUT                            00000006
+MSK                               00000093
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OPTION_REG                        00000081
+OSCCON                            0000008F
+OSCTUNE                           00000090
+OSFIE                             00000007
+OSFIF                             00000007
+OSTS                              00000003
+P                                 00000004
+P1M0                              00000006
+P1M1                              00000007
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PDC0                              00000000
+PDC1                              00000001
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PDC2                              00000002
+PDC3                              00000003
+PDC4                              00000004
+PDC5                              00000005
+PDC6                              00000006
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PRSEN                             00000007
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSSAC0                            00000002
+PSSAC1                            00000003
+PSSBD0                            00000000
+PSSBD1                            00000001
+PSTRCON                           0000009D
+PULSR                             00000002
+PULSS                             00000003
+PWM1CON                           0000009B
+R                                 00000002
+RBIE                              00000003
+RBIF                              00000000
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_W                               00000002
+RotateDisplay                     00000026
+S                                 00000003
+SBOREN                            00000004
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SCKP                              00000004
+SCS                               00000000
+SEN                               00000000
+SENDB                             00000003
+SMP                               00000007
+SPBRG                             00000099
+SPBRGH                            0000009A
+SPEN                              00000007
+SR0                               00000006
+SR1                               00000007
+SRCON                             00000185
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPMSK                            00000093
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+STRA                              00000000
+STRB                              00000001
+STRC                              00000002
+STRD                              00000003
+STRSYNC                           00000004
+SWDTEN                            00000000
+SYNC                              00000004
+SubReturnValue                    00000029
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1GIV                             00000007
+T1GSS                             00000001
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR1CS                            00000001
+TMR1GE                            00000006
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISB                             00000086
+TRISC                             00000087
+TRISD                             00000088
+TRISE                             00000089
+TRMT                              00000001
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+TimeHundredths                    00000027
+TimeOnes                          00000025
+TimeTens                          00000024
+TimeTenths                        00000026
+TimerDisplay                      00000023
+TimerRun                          00000016
+TimerRunningLoop                  0000001C
+TimerWait                         00000009
+TimerWaitingLoop                  0000000B
+UA                                00000001
+ULPWUE                            00000005
+ULPWUIE                           00000002
+ULPWUIF                           00000002
+VCFG0                             00000004
+VCFG1                             00000005
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+VR3                               00000003
+VRCON                             00000097
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+VRSS                              00000004
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000105
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WPUB                              00000095
+WPUB0                             00000000
+WPUB1                             00000001
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+Wait10ms                          00000060
+Wait1s                            00000070
+Wait5s                            00000080
+WaitAndCheckButton                0000002B
+Z                                 00000002
+_BOR21V                           00003EFF
+_BOR40V                           00003FFF
+_BOR_NSLEEP                       00003EFF
+_BOR_OFF                          00003CFF
+_BOR_ON                           00003FFF
+_BOR_SBODEN                       00003DFF
+_CONFIG1                          00002007
+_CONFIG2                          00002008
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003F7F
+_CP_OFF                           00003FFF
+_CP_ON                            00003FBF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         00001FFF
+_EC_OSC                           00003FFB
+_EXTRC                            00003FFF
+_EXTRCIO                          00003FFE
+_EXTRC_OSC_CLKOUT                 00003FFF
+_EXTRC_OSC_NOCLKOUT               00003FFE
+_FCMEN_OFF                        000037FF
+_FCMEN_ON                         00003FFF
+_HS_OSC                           00003FFA
+MPASM  5.20                     STOPWATCH.ASM   6-9-2009  19:31:49         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_IESO_OFF                         00003BFF
+_IESO_ON                          00003FFF
+_INTOSC                           00003FFD
+_INTOSCIO                         00003FFC
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FF8
+_LVP_OFF                          00002FFF
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FEF
+_WDT_OFF                          00003FF7
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FF9
+__16F887                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXX------------- ---------------- XXXXXXXXX------- XXXXXX----------
+0080 : XXXXXXXXXX------ ---------------- XXXXXXXXXXXXXXXX XXXXXXXXXXXXX---
+00C0 : ---------------- XXXXXXXXX------- ---------------- ----------------
+2000 : -------XX------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   130
+Program Memory Words Free:  8062
+
+
+Errors   :     0
+Warnings :     7 reported,     0 suppressed
+Messages :    13 reported,     0 suppressed
+
+
