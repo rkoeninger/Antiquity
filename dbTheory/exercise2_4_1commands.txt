@@ -1,0 +1,4 @@
+create table PC (model int primary key, speed float, ram int, hd int, price int);
+create table Product (maker char(1) not null, model int primary key, type char(12));
+create table Laptop (model int primary key, speed float, ram int, hd int, screen float, price int);
+create table Printer (model int primary key, color boolean, type char(12), price int);
