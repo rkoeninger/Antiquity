@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="main.cpp" open="1" top="1">
+		<Cursor position="486" topLine="0"/>
+	</File>
+	<File name="pqext.cpp" open="1" top="0">
+		<Cursor position="39" topLine="0"/>
+	</File>
+	<File name="pqext.h" open="1" top="0">
+		<Cursor position="212" topLine="0"/>
+	</File>
+	<File name="pqueue.cpp" open="0" top="0">
+		<Cursor position="674" topLine="0"/>
+	</File>
+	<File name="pqueue.h" open="0" top="0">
+		<Cursor position="802" topLine="0"/>
+	</File>
+</CodeBlocks_layout_file>

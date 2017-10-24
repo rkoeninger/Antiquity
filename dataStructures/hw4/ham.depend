@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1162613293 c:\documents and settings\robbix\my documents\my school files\data structures\hw4\main.cpp
+	<iostream>
+
+1161008656 c:\documents and settings\robbix\my documents\my school files\data structures\hw4\bigint.cpp
+	<stdlib.h>
+	<string.h>
+	<math.h>
+
+1162613947 c:\documents and settings\robbix\my documents\my school files\data structures\hw4\hamming.cc
+	<iomanip>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	"bigint.h"
+
+1161038841 c:\documents and settings\robbix\my documents\my school files\data structures\hw4\bigint.h
+
+1162679054 c:\documents and settings\robbix\my documents\my school files\data structures\hw4\pqueue.cpp
+	<stdlib.h>
+	"pqueue.h"
+
+1162678934 c:\documents and settings\robbix\my documents\my school files\data structures\hw4\pqueue.h
+	<iostream>
+

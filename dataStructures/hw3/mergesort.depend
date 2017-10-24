@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1161790684 c:\documents and settings\robbix\my documents\my school files\data structures\hw3\main.cpp
+	<iostream>
+	<fstream>
+	"mrgsrt.h"
+	"cell.h"
+
+1161829458 c:\documents and settings\robbix\my documents\my school files\data structures\hw3\mrgsrt.h
+	<fstream>
+	"cell.h"
+
+1161646591 c:\documents and settings\robbix\my documents\my school files\data structures\hw3\cell.h
+	<iostream>
+
+1161738146 c:\documents and settings\robbix\my documents\my school files\data structures\hw3\cell.cpp
+	"cell.h"
+
+1161790587 c:\documents and settings\robbix\my documents\my school files\data structures\hw3\mrgsrt.cpp
+	<iostream>
+	"mrgsrt.h"
+	"cell.h"
+

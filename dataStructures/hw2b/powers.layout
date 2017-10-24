@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="bigint.h" open="1" top="0">
+		<Cursor position="178" topLine="0"/>
+	</File>
+	<File name="main.cpp" open="1" top="1">
+		<Cursor position="298" topLine="0"/>
+	</File>
+	<File name="power.cpp" open="1" top="0">
+		<Cursor position="428" topLine="0"/>
+	</File>
+	<File name="power.h" open="1" top="0">
+		<Cursor position="61" topLine="0"/>
+	</File>
+	<Expand folder="/Sources"/>
+	<Expand folder="/Headers"/>
+</CodeBlocks_layout_file>

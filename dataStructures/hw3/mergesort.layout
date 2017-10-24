@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="cell.cpp" open="1" top="0">
+		<Cursor position="179" topLine="0"/>
+	</File>
+	<File name="cell.h" open="1" top="0">
+		<Cursor position="194" topLine="0"/>
+	</File>
+	<File name="main.cpp" open="1" top="0">
+		<Cursor position="449" topLine="0"/>
+	</File>
+	<File name="mrgsrt.cpp" open="1" top="1">
+		<Cursor position="19" topLine="0"/>
+	</File>
+	<File name="mrgsrt.h" open="1" top="0">
+		<Cursor position="687" topLine="0"/>
+	</File>
+</CodeBlocks_layout_file>

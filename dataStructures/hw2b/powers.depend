@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1161042312 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\main.cpp
+	<iostream>
+
+1161012246 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\stacker.cpp
+	<iostream>
+	<stdlib.h>
+	"stacker.h"
+
+1161036069 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\stacker.h
+	<iostream>
+
+1161012256 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\bigint.cpp
+	<stdlib.h>
+	<string.h>
+	<math.h>
+
+1161044212 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\power.cpp
+	<iostream>
+	"power.h"
+	"stacker.h"
+	"bigint.h"
+
+1161044331 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\power.h
+
+1161042441 c:\documents and settings\robbix\my documents\my school files\data structures\hw2b\bigint.h
+

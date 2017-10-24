@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1163470528 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\list.cpp
+	<iostream>
+	<stdlib.h>
+	"list_funcs.h"
+	"list.h"
+
+1163112997 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\list_funcs.h
+
+1163112985 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\list.h
+	"cell.h"
+
+1163112993 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\cell.h
+
+1163470469 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\hashtable.cpp
+	<iostream>
+	"hashtable.h"
+	"hash_funcs.h"
+
+1163466848 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\hashtable.h
+	<iostream>
+	"list.h"
+	"hash_funcs.h"
+
+1163464856 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\hash_funcs.h
+
+1163112990 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\cell.cpp
+	<stdlib.h>
+	"cell.h"
+
+1163469875 c:\documents and settings\robbix\my documents\my school files\data structures\hw5\main.cpp
+	<iostream>
+	"hash_funcs.h"
+	"hashtable.h"
+

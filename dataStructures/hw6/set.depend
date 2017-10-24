@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1164060386 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\hashtable.cpp
+	<iostream>
+	"hashtable.h"
+	"hash_funcs.h"
+
+1164060377 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\hashtable.h
+	<iostream>
+	"list.h"
+	"hash_funcs.h"
+
+1163112985 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\list.h
+	"cell.h"
+
+1163112993 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\cell.h
+
+1163464856 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\hash_funcs.h
+
+1163470528 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\list.cpp
+	<iostream>
+	<stdlib.h>
+	"list_funcs.h"
+	"list.h"
+
+1163112997 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\list_funcs.h
+
+1164257314 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\main.cpp
+	<iostream>
+	"partition.h"
+
+1164253222 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\partition.h
+	"hashtable.h"
+	"node.h"
+
+1164057291 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\node.h
+	<iostream>
+
+1164057367 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\node.cpp
+	<stdlib.h>
+	"node.h"
+
+1164257709 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\partition.cpp
+	<iostream>
+	"partition.h"
+	"hashtable.h"
+	"node.h"
+
+1163112990 c:\documents and settings\robbix\my documents\my school files\data structures\hw6\cell.cpp
+	<stdlib.h>
+	"cell.h"
+

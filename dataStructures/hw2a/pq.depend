@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1161045158 c:\documents and settings\robbix\my documents\my school files\data structures\hw2a\pqext.cpp
+	<stdlib.h>
+	"pqext.h"
+
+1161042008 c:\documents and settings\robbix\my documents\my school files\data structures\hw2a\pqext.h
+	"pqueue.h"
+
+1161012233 c:\documents and settings\robbix\my documents\my school files\data structures\hw2a\pqueue.cpp
+	<stdlib.h>
+	"pqueue.h"
+
+1161012226 c:\documents and settings\robbix\my documents\my school files\data structures\hw2a\pqueue.h
+	<iostream>
+
+1161045068 c:\documents and settings\robbix\my documents\my school files\data structures\hw2a\main.cpp
+	<iostream>
+	"pqueue.h"
+	"pqext.h"
+

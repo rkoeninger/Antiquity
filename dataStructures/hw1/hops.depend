@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1160234092 c:\documents and settings\robbix\my documents\my school files\data structures\queue.cpp
+	<iostream>
+	"queue.h"
+
+1160234096 c:\documents and settings\robbix\my documents\my school files\data structures\queue.h
+	<iostream>
+
+1160341347 c:\documents and settings\robbix\my documents\my school files\data structures\main.cpp
+	<iostream>
+	<string>
+	"city.h"
+	"dao.h"
+	"queue.h"
+
+1160579008 c:\documents and settings\robbix\my documents\my school files\data structures\dao.cpp
+	<fstream>
+	<string>
+	"queue.h"
+	"dao.h"
+
+1160332935 c:\documents and settings\robbix\my documents\my school files\data structures\city.h
+	<iostream>
+	<string>
+	"queue.h"
+
+1160333298 c:\documents and settings\robbix\my documents\my school files\data structures\dao.h
+	<string>
+	"city.h"
+
+1160333026 c:\documents and settings\robbix\my documents\my school files\data structures\city.cpp
+	<iostream>
+	<string>
+	"city.h"
+
+1160579008 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\dao.cpp
+	<fstream>
+	<string>
+	"queue.h"
+	"dao.h"
+
+1160234096 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\queue.h
+	<iostream>
+
+1160333298 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\dao.h
+	<string>
+	"city.h"
+
+1160332935 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\city.h
+	<iostream>
+	<string>
+	"queue.h"
+
+1160582015 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\main.cpp
+	<iostream>
+	<string>
+	"city.h"
+	"dao.h"
+	"queue.h"
+
+1160234092 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\queue.cpp
+	<iostream>
+	"queue.h"
+
+1160333026 c:\documents and settings\robbix\my documents\my school files\data structures\hw1\city.cpp
+	<iostream>
+	<string>
+	"city.h"
+

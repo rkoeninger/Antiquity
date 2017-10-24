@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="hashtable.cpp" open="0" top="0">
+		<Cursor position="164" topLine="0"/>
+	</File>
+	<File name="hashtable.h" open="0" top="0">
+		<Cursor position="273" topLine="0"/>
+	</File>
+	<File name="list.cpp" open="0" top="0">
+		<Cursor position="420" topLine="0"/>
+	</File>
+	<File name="list.h" open="1" top="0">
+		<Cursor position="208" topLine="0"/>
+	</File>
+	<File name="main.cpp" open="1" top="0">
+		<Cursor position="425" topLine="0"/>
+	</File>
+	<File name="node.h" open="0" top="0">
+		<Cursor position="16" topLine="0"/>
+	</File>
+	<File name="partition.cpp" open="0" top="0">
+		<Cursor position="1144" topLine="0"/>
+	</File>
+	<File name="partition.h" open="0" top="0">
+		<Cursor position="247" topLine="0"/>
+	</File>
+	<File name="supervisor.cpp" open="1" top="1">
+		<Cursor position="647" topLine="7"/>
+	</File>
+	<File name="supervisor.h" open="1" top="0">
+		<Cursor position="84" topLine="0"/>
+	</File>
+</CodeBlocks_layout_file>

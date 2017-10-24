@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1163112990 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\cell.cpp
+	<stdlib.h>
+	"cell.h"
+
+1163112993 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\cell.h
+
+1165269284 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\hashtable.cpp
+	<iostream>
+	<stdlib.h>
+	"list_funcs.h"
+	"hash_funcs.h"
+	"hashtable.h"
+
+1165269292 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\list_funcs.h
+
+1165269288 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\hash_funcs.h
+
+1165445333 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\hashtable.h
+	<iostream>
+	"list.h"
+	"hash_funcs.h"
+
+1163112985 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\list.h
+	"cell.h"
+
+1163470528 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\list.cpp
+	<iostream>
+	<stdlib.h>
+	"list_funcs.h"
+	"list.h"
+
+1165610913 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\main.cpp
+	<iostream>
+	<time.h>
+	"supervisor.h"
+	"cable.h"
+
+1165610604 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\supervisor.h
+	"list.h"
+	"partition.h"
+
+1165269280 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\node.cpp
+	<stdlib.h>
+	"node.h"
+
+1164057291 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\node.h
+	<iostream>
+
+1165269272 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\partition.cpp
+	<iostream>
+	"hash_funcs.h"
+	"partition.h"
+
+1165445394 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\partition.h
+	"hashtable.h"
+	"node.h"
+
+1165269256 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\cable.cpp
+	"cable.h"
+
+1165269252 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\cable.h
+
+1165610619 c:\documents and settings\robbix\my documents\my school files\data structures\hw7\supervisor.cpp
+	<iostream>
+	<fstream>
+	"supervisor.h"
+	"cable.h"
+
