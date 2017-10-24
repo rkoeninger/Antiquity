@@ -1,0 +1,1451 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     42255,       1182]*)
+(*NotebookOutlinePosition[     43242,       1215]*)
+(*  CellTagsIndexPosition[     43110,       1208]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lecture 4", "Title"],
+
+Cell["Lists, etc.", "Subtitle"],
+
+Cell["Lists are objects enclosed in braces", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(L\  = \ {a, \ b, \ c, \ d}\)], "Input"],
+
+Cell[BoxData[
+    \({a, b, c, d}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(f[L]\)], "Input"],
+
+Cell[BoxData[
+    \(f[{a, b, c, d}]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Sin[L]\)], "Input"],
+
+Cell[BoxData[
+    \({Sin[a], Sin[b], Sin[c], Sin[d]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Exp[L]\)], "Input"],
+
+Cell[BoxData[
+    \({\[ExponentialE]\^a, \[ExponentialE]\^b, \[ExponentialE]\^c, \
+\[ExponentialE]\^d}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Attributes[Sin]\)], "Input"],
+
+Cell[BoxData[
+    \({Listable, NumericFunction, Protected}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(f\  /@ L\)], "Input"],
+
+Cell[BoxData[
+    \({f[a], f[b], f[c], f[d]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Map[f, \ {a, \ b, \ c, \ d}]\)], "Input"],
+
+Cell[BoxData[
+    \({f[a], f[b], f[c], f[d]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(?Table\)\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"\<\"Table[expr, {imax}] generates a list of imax copies of expr. \
+Table[expr, {i, imax}] generates a list of the values of expr when i runs \
+from 1 to imax. Table[expr, {i, imin, imax}] starts with i = imin. \
+Table[expr, {i, imin, imax, di}] uses steps di. Table[expr, {i, imin, imax}, \
+{j, jmin, jmax}, ... ] gives a nested list. The list associated with i is \
+outermost.\"\>", " ", 
+      ButtonBox[
+        StyleBox["More\[Ellipsis]",
+          "SR"],
+        ButtonData:>"Table",
+        Active->True,
+        ButtonStyle->"RefGuideLink"]}]], "Print",
+  CellTags->"Info3347266212-5458162"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(?Range\)\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"\<\"Range[imax] generates the list {1, 2, ... , imax}. \
+Range[imin, imax] generates the list {imin, ... , imax}. Range[imin, imax, \
+di] uses step di.\"\>", " ", 
+      ButtonBox[
+        StyleBox["More\[Ellipsis]",
+          "SR"],
+        ButtonData:>"Range",
+        Active->True,
+        ButtonStyle->"RefGuideLink"]}]], "Print",
+  CellTags->"Info3347266215-9714174"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Range[10]\)], "Input"],
+
+Cell[BoxData[
+    \({1, 2, 3, 4, 5, 6, 7, 8, 9, 10}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Range[4, \ 10]\)], "Input"],
+
+Cell[BoxData[
+    \({4, 5, 6, 7, 8, 9, 10}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Table[Sin[i], \ {i, \ 1, \ 10}]\)], "Input"],
+
+Cell[BoxData[
+    \({Sin[1], Sin[2], Sin[3], Sin[4], Sin[5], Sin[6], Sin[7], Sin[8], 
+      Sin[9], Sin[10]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Array[Sin, \ 10]\)], "Input"],
+
+Cell[BoxData[
+    \({Sin[1], Sin[2], Sin[3], Sin[4], Sin[5], Sin[6], Sin[7], Sin[8], 
+      Sin[9], Sin[10]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Array[Sin, \ {3, \ 4, \ 5, \ 6}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(Sin::"argx"\), \(\(:\)\(\ \)\), "\<\"\\!\\(Sin\\) called with \
+\\!\\(4\\) arguments; 1 argument is expected. \\!\\(\\*ButtonBox[\\\"More\
+\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::argx\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    RowBox[{\(Sin::"argx"\), \(\(:\)\(\ \)\), "\<\"\\!\\(Sin\\) called with \
+\\!\\(4\\) arguments; 1 argument is expected. \\!\\(\\*ButtonBox[\\\"More\
+\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::argx\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    RowBox[{\(Sin::"argx"\), \(\(:\)\(\ \)\), "\<\"\\!\\(Sin\\) called with \
+\\!\\(4\\) arguments; 1 argument is expected. \\!\\(\\*ButtonBox[\\\"More\
+\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::argx\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    RowBox[{\(General::"stop"\), \(\(:\)\(\ \)\), "\<\"Further output of \
+\\!\\(Sin :: \\\"argx\\\"\\) will be suppressed during this calculation. \
+\\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\
+\\\", ButtonFrame->None, ButtonData:>\\\"General::stop\\\"]\\)\"\>"}]], \
+"Message"],
+
+Cell[BoxData[
+    \({{{{Sin[1, 1, 1, 1], Sin[1, 1, 1, 2], Sin[1, 1, 1, 3], Sin[1, 1, 1, 4], 
+            Sin[1, 1, 1, 5], Sin[1, 1, 1, 6]}, {Sin[1, 1, 2, 1], 
+            Sin[1, 1, 2, 2], Sin[1, 1, 2, 3], Sin[1, 1, 2, 4], 
+            Sin[1, 1, 2, 5], Sin[1, 1, 2, 6]}, {Sin[1, 1, 3, 1], 
+            Sin[1, 1, 3, 2], Sin[1, 1, 3, 3], Sin[1, 1, 3, 4], 
+            Sin[1, 1, 3, 5], Sin[1, 1, 3, 6]}, {Sin[1, 1, 4, 1], 
+            Sin[1, 1, 4, 2], Sin[1, 1, 4, 3], Sin[1, 1, 4, 4], 
+            Sin[1, 1, 4, 5], Sin[1, 1, 4, 6]}, {Sin[1, 1, 5, 1], 
+            Sin[1, 1, 5, 2], Sin[1, 1, 5, 3], Sin[1, 1, 5, 4], 
+            Sin[1, 1, 5, 5], Sin[1, 1, 5, 6]}}, {{Sin[1, 2, 1, 1], 
+            Sin[1, 2, 1, 2], Sin[1, 2, 1, 3], Sin[1, 2, 1, 4], 
+            Sin[1, 2, 1, 5], Sin[1, 2, 1, 6]}, {Sin[1, 2, 2, 1], 
+            Sin[1, 2, 2, 2], Sin[1, 2, 2, 3], Sin[1, 2, 2, 4], 
+            Sin[1, 2, 2, 5], Sin[1, 2, 2, 6]}, {Sin[1, 2, 3, 1], 
+            Sin[1, 2, 3, 2], Sin[1, 2, 3, 3], Sin[1, 2, 3, 4], 
+            Sin[1, 2, 3, 5], Sin[1, 2, 3, 6]}, {Sin[1, 2, 4, 1], 
+            Sin[1, 2, 4, 2], Sin[1, 2, 4, 3], Sin[1, 2, 4, 4], 
+            Sin[1, 2, 4, 5], Sin[1, 2, 4, 6]}, {Sin[1, 2, 5, 1], 
+            Sin[1, 2, 5, 2], Sin[1, 2, 5, 3], Sin[1, 2, 5, 4], 
+            Sin[1, 2, 5, 5], Sin[1, 2, 5, 6]}}, {{Sin[1, 3, 1, 1], 
+            Sin[1, 3, 1, 2], Sin[1, 3, 1, 3], Sin[1, 3, 1, 4], 
+            Sin[1, 3, 1, 5], Sin[1, 3, 1, 6]}, {Sin[1, 3, 2, 1], 
+            Sin[1, 3, 2, 2], Sin[1, 3, 2, 3], Sin[1, 3, 2, 4], 
+            Sin[1, 3, 2, 5], Sin[1, 3, 2, 6]}, {Sin[1, 3, 3, 1], 
+            Sin[1, 3, 3, 2], Sin[1, 3, 3, 3], Sin[1, 3, 3, 4], 
+            Sin[1, 3, 3, 5], Sin[1, 3, 3, 6]}, {Sin[1, 3, 4, 1], 
+            Sin[1, 3, 4, 2], Sin[1, 3, 4, 3], Sin[1, 3, 4, 4], 
+            Sin[1, 3, 4, 5], Sin[1, 3, 4, 6]}, {Sin[1, 3, 5, 1], 
+            Sin[1, 3, 5, 2], Sin[1, 3, 5, 3], Sin[1, 3, 5, 4], 
+            Sin[1, 3, 5, 5], Sin[1, 3, 5, 6]}}, {{Sin[1, 4, 1, 1], 
+            Sin[1, 4, 1, 2], Sin[1, 4, 1, 3], Sin[1, 4, 1, 4], 
+            Sin[1, 4, 1, 5], Sin[1, 4, 1, 6]}, {Sin[1, 4, 2, 1], 
+            Sin[1, 4, 2, 2], Sin[1, 4, 2, 3], Sin[1, 4, 2, 4], 
+            Sin[1, 4, 2, 5], Sin[1, 4, 2, 6]}, {Sin[1, 4, 3, 1], 
+            Sin[1, 4, 3, 2], Sin[1, 4, 3, 3], Sin[1, 4, 3, 4], 
+            Sin[1, 4, 3, 5], Sin[1, 4, 3, 6]}, {Sin[1, 4, 4, 1], 
+            Sin[1, 4, 4, 2], Sin[1, 4, 4, 3], Sin[1, 4, 4, 4], 
+            Sin[1, 4, 4, 5], Sin[1, 4, 4, 6]}, {Sin[1, 4, 5, 1], 
+            Sin[1, 4, 5, 2], Sin[1, 4, 5, 3], Sin[1, 4, 5, 4], 
+            Sin[1, 4, 5, 5], Sin[1, 4, 5, 6]}}}, {{{Sin[2, 1, 1, 1], 
+            Sin[2, 1, 1, 2], Sin[2, 1, 1, 3], Sin[2, 1, 1, 4], 
+            Sin[2, 1, 1, 5], Sin[2, 1, 1, 6]}, {Sin[2, 1, 2, 1], 
+            Sin[2, 1, 2, 2], Sin[2, 1, 2, 3], Sin[2, 1, 2, 4], 
+            Sin[2, 1, 2, 5], Sin[2, 1, 2, 6]}, {Sin[2, 1, 3, 1], 
+            Sin[2, 1, 3, 2], Sin[2, 1, 3, 3], Sin[2, 1, 3, 4], 
+            Sin[2, 1, 3, 5], Sin[2, 1, 3, 6]}, {Sin[2, 1, 4, 1], 
+            Sin[2, 1, 4, 2], Sin[2, 1, 4, 3], Sin[2, 1, 4, 4], 
+            Sin[2, 1, 4, 5], Sin[2, 1, 4, 6]}, {Sin[2, 1, 5, 1], 
+            Sin[2, 1, 5, 2], Sin[2, 1, 5, 3], Sin[2, 1, 5, 4], 
+            Sin[2, 1, 5, 5], Sin[2, 1, 5, 6]}}, {{Sin[2, 2, 1, 1], 
+            Sin[2, 2, 1, 2], Sin[2, 2, 1, 3], Sin[2, 2, 1, 4], 
+            Sin[2, 2, 1, 5], Sin[2, 2, 1, 6]}, {Sin[2, 2, 2, 1], 
+            Sin[2, 2, 2, 2], Sin[2, 2, 2, 3], Sin[2, 2, 2, 4], 
+            Sin[2, 2, 2, 5], Sin[2, 2, 2, 6]}, {Sin[2, 2, 3, 1], 
+            Sin[2, 2, 3, 2], Sin[2, 2, 3, 3], Sin[2, 2, 3, 4], 
+            Sin[2, 2, 3, 5], Sin[2, 2, 3, 6]}, {Sin[2, 2, 4, 1], 
+            Sin[2, 2, 4, 2], Sin[2, 2, 4, 3], Sin[2, 2, 4, 4], 
+            Sin[2, 2, 4, 5], Sin[2, 2, 4, 6]}, {Sin[2, 2, 5, 1], 
+            Sin[2, 2, 5, 2], Sin[2, 2, 5, 3], Sin[2, 2, 5, 4], 
+            Sin[2, 2, 5, 5], Sin[2, 2, 5, 6]}}, {{Sin[2, 3, 1, 1], 
+            Sin[2, 3, 1, 2], Sin[2, 3, 1, 3], Sin[2, 3, 1, 4], 
+            Sin[2, 3, 1, 5], Sin[2, 3, 1, 6]}, {Sin[2, 3, 2, 1], 
+            Sin[2, 3, 2, 2], Sin[2, 3, 2, 3], Sin[2, 3, 2, 4], 
+            Sin[2, 3, 2, 5], Sin[2, 3, 2, 6]}, {Sin[2, 3, 3, 1], 
+            Sin[2, 3, 3, 2], Sin[2, 3, 3, 3], Sin[2, 3, 3, 4], 
+            Sin[2, 3, 3, 5], Sin[2, 3, 3, 6]}, {Sin[2, 3, 4, 1], 
+            Sin[2, 3, 4, 2], Sin[2, 3, 4, 3], Sin[2, 3, 4, 4], 
+            Sin[2, 3, 4, 5], Sin[2, 3, 4, 6]}, {Sin[2, 3, 5, 1], 
+            Sin[2, 3, 5, 2], Sin[2, 3, 5, 3], Sin[2, 3, 5, 4], 
+            Sin[2, 3, 5, 5], Sin[2, 3, 5, 6]}}, {{Sin[2, 4, 1, 1], 
+            Sin[2, 4, 1, 2], Sin[2, 4, 1, 3], Sin[2, 4, 1, 4], 
+            Sin[2, 4, 1, 5], Sin[2, 4, 1, 6]}, {Sin[2, 4, 2, 1], 
+            Sin[2, 4, 2, 2], Sin[2, 4, 2, 3], Sin[2, 4, 2, 4], 
+            Sin[2, 4, 2, 5], Sin[2, 4, 2, 6]}, {Sin[2, 4, 3, 1], 
+            Sin[2, 4, 3, 2], Sin[2, 4, 3, 3], Sin[2, 4, 3, 4], 
+            Sin[2, 4, 3, 5], Sin[2, 4, 3, 6]}, {Sin[2, 4, 4, 1], 
+            Sin[2, 4, 4, 2], Sin[2, 4, 4, 3], Sin[2, 4, 4, 4], 
+            Sin[2, 4, 4, 5], Sin[2, 4, 4, 6]}, {Sin[2, 4, 5, 1], 
+            Sin[2, 4, 5, 2], Sin[2, 4, 5, 3], Sin[2, 4, 5, 4], 
+            Sin[2, 4, 5, 5], Sin[2, 4, 5, 6]}}}, {{{Sin[3, 1, 1, 1], 
+            Sin[3, 1, 1, 2], Sin[3, 1, 1, 3], Sin[3, 1, 1, 4], 
+            Sin[3, 1, 1, 5], Sin[3, 1, 1, 6]}, {Sin[3, 1, 2, 1], 
+            Sin[3, 1, 2, 2], Sin[3, 1, 2, 3], Sin[3, 1, 2, 4], 
+            Sin[3, 1, 2, 5], Sin[3, 1, 2, 6]}, {Sin[3, 1, 3, 1], 
+            Sin[3, 1, 3, 2], Sin[3, 1, 3, 3], Sin[3, 1, 3, 4], 
+            Sin[3, 1, 3, 5], Sin[3, 1, 3, 6]}, {Sin[3, 1, 4, 1], 
+            Sin[3, 1, 4, 2], Sin[3, 1, 4, 3], Sin[3, 1, 4, 4], 
+            Sin[3, 1, 4, 5], Sin[3, 1, 4, 6]}, {Sin[3, 1, 5, 1], 
+            Sin[3, 1, 5, 2], Sin[3, 1, 5, 3], Sin[3, 1, 5, 4], 
+            Sin[3, 1, 5, 5], Sin[3, 1, 5, 6]}}, {{Sin[3, 2, 1, 1], 
+            Sin[3, 2, 1, 2], Sin[3, 2, 1, 3], Sin[3, 2, 1, 4], 
+            Sin[3, 2, 1, 5], Sin[3, 2, 1, 6]}, {Sin[3, 2, 2, 1], 
+            Sin[3, 2, 2, 2], Sin[3, 2, 2, 3], Sin[3, 2, 2, 4], 
+            Sin[3, 2, 2, 5], Sin[3, 2, 2, 6]}, {Sin[3, 2, 3, 1], 
+            Sin[3, 2, 3, 2], Sin[3, 2, 3, 3], Sin[3, 2, 3, 4], 
+            Sin[3, 2, 3, 5], Sin[3, 2, 3, 6]}, {Sin[3, 2, 4, 1], 
+            Sin[3, 2, 4, 2], Sin[3, 2, 4, 3], Sin[3, 2, 4, 4], 
+            Sin[3, 2, 4, 5], Sin[3, 2, 4, 6]}, {Sin[3, 2, 5, 1], 
+            Sin[3, 2, 5, 2], Sin[3, 2, 5, 3], Sin[3, 2, 5, 4], 
+            Sin[3, 2, 5, 5], Sin[3, 2, 5, 6]}}, {{Sin[3, 3, 1, 1], 
+            Sin[3, 3, 1, 2], Sin[3, 3, 1, 3], Sin[3, 3, 1, 4], 
+            Sin[3, 3, 1, 5], Sin[3, 3, 1, 6]}, {Sin[3, 3, 2, 1], 
+            Sin[3, 3, 2, 2], Sin[3, 3, 2, 3], Sin[3, 3, 2, 4], 
+            Sin[3, 3, 2, 5], Sin[3, 3, 2, 6]}, {Sin[3, 3, 3, 1], 
+            Sin[3, 3, 3, 2], Sin[3, 3, 3, 3], Sin[3, 3, 3, 4], 
+            Sin[3, 3, 3, 5], Sin[3, 3, 3, 6]}, {Sin[3, 3, 4, 1], 
+            Sin[3, 3, 4, 2], Sin[3, 3, 4, 3], Sin[3, 3, 4, 4], 
+            Sin[3, 3, 4, 5], Sin[3, 3, 4, 6]}, {Sin[3, 3, 5, 1], 
+            Sin[3, 3, 5, 2], Sin[3, 3, 5, 3], Sin[3, 3, 5, 4], 
+            Sin[3, 3, 5, 5], Sin[3, 3, 5, 6]}}, {{Sin[3, 4, 1, 1], 
+            Sin[3, 4, 1, 2], Sin[3, 4, 1, 3], Sin[3, 4, 1, 4], 
+            Sin[3, 4, 1, 5], Sin[3, 4, 1, 6]}, {Sin[3, 4, 2, 1], 
+            Sin[3, 4, 2, 2], Sin[3, 4, 2, 3], Sin[3, 4, 2, 4], 
+            Sin[3, 4, 2, 5], Sin[3, 4, 2, 6]}, {Sin[3, 4, 3, 1], 
+            Sin[3, 4, 3, 2], Sin[3, 4, 3, 3], Sin[3, 4, 3, 4], 
+            Sin[3, 4, 3, 5], Sin[3, 4, 3, 6]}, {Sin[3, 4, 4, 1], 
+            Sin[3, 4, 4, 2], Sin[3, 4, 4, 3], Sin[3, 4, 4, 4], 
+            Sin[3, 4, 4, 5], Sin[3, 4, 4, 6]}, {Sin[3, 4, 5, 1], 
+            Sin[3, 4, 5, 2], Sin[3, 4, 5, 3], Sin[3, 4, 5, 4], 
+            Sin[3, 4, 5, 5], Sin[3, 4, 5, 6]}}}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Table[Sin[i\ j], \ {i, \ 1, \ 3}, \ {j, \ 1, \ 5}]\)], "Input"],
+
+Cell[BoxData[
+    \({{Sin[1], Sin[2], Sin[3], Sin[4], Sin[5]}, {Sin[2], Sin[4], Sin[6], 
+        Sin[8], Sin[10]}, {Sin[3], Sin[6], Sin[9], Sin[12], 
+        Sin[15]}}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(f[x_]\  := \ 1\/\(1\  + \ x\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Nest[f, \ Sqrt[2], \ 7]\)], "Input"],
+
+Cell[BoxData[
+    \(1\/\(1 + 1\/\(1 + 1\/\(1 + 1\/\(1 + 1\/\(1 + 1\/\(1 + 1\/\(1 + \
+\@2\)\)\)\)\)\)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(% // N\)], "Input"],
+
+Cell[BoxData[
+    \(0.6173377324041448`\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(NestList[f, \ Sqrt[2], \ 15]\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(% // N\)], "Input"],
+
+Cell[BoxData[
+    \({1.4142135623730951`, 0.4142135623730951`, 0.7071067811865475`, 
+      0.585786437626905`, 0.6306019374818707`, 0.6132704598304932`, 
+      0.6198588673749535`, 0.6173377324041448`, 0.618300049497712`, 
+      0.6179323792954095`, 0.6180728025453625`, 0.6180191635548891`, 
+      0.6180396515223823`, 0.6180318257708451`, 0.6180348149354793`, 
+      0.6180336731752437`}\)], "Output"]
+}, Open  ]],
+
+Cell["\<\
+page 27 # 2 generate a list of values of the function f(x)=sin(x)/x for x = \
+.1, .2, ..., 10, first using table, then without table\
+\>", "Text"],
+
+Cell[BoxData[
+    \(g[x_]\  := \ Sin[x]\/x\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Table[g[x], \ {x, \ 1, \ 2}]\)], "Input"],
+
+Cell[BoxData[
+    \({Sin[1], Sin[2]\/2}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Table[g[x], {x, \ 1, \ 10}]\)], "Input"],
+
+Cell[BoxData[
+    \({Sin[1], Sin[2]\/2, Sin[3]\/3, Sin[4]\/4, Sin[5]\/5, Sin[6]\/6, 
+      Sin[7]\/7, Sin[8]\/8, Sin[9]\/9, Sin[10]\/10}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Nest[g[x], \ 1, \ 3]\)], "Input"],
+
+Cell[BoxData[
+    \(\(Sin[x]\/x\)[\(Sin[x]\/x\)[\(Sin[x]\/x\)[1]]]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Table[g[x], \ {x, \ 0.1, \ 1, \ 0.1}]\)], "Input"],
+
+Cell[BoxData[
+    \({0.9983341664682815`, 0.9933466539753061`, 0.9850673555377986`, 
+      0.9735458557716263`, 0.958851077208406`, 0.9410707889917257`, 
+      0.9203109817681301`, 0.8966951136244035`, 0.8703632329194261`, 
+      0.8414709848078965`}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(g[x]\  /@ \ Range[0.1, \ 1, \ 0.1]\)], "Input"],
+
+Cell[BoxData[
+    \({\(Sin[x]\/x\)[0.1`], \(Sin[x]\/x\)[0.2`], \(Sin[x]\/x\)[
+        0.30000000000000004`], \(Sin[x]\/x\)[0.4`], \(Sin[x]\/x\)[
+        0.5`], \(Sin[x]\/x\)[0.6000000000000001`], \(Sin[x]\/x\)[
+        0.7000000000000001`], \(Sin[x]\/x\)[0.8`], \(Sin[x]\/x\)[
+        0.9`], \(Sin[x]\/x\)[1.`]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(% // N\)], "Input"],
+
+Cell[BoxData[
+    \({\(Sin[x]\/x\)[0.1`], \(Sin[x]\/x\)[0.2`], \(Sin[x]\/x\)[
+        0.30000000000000004`], \(Sin[x]\/x\)[0.4`], \(Sin[x]\/x\)[
+        0.5`], \(Sin[x]\/x\)[0.6000000000000001`], \(Sin[x]\/x\)[
+        0.7000000000000001`], \(Sin[x]\/x\)[0.8`], \(Sin[x]\/x\)[
+        0.9`], \(Sin[x]\/x\)[1.`]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(g\  /@ \ Range[0.1, \ 1, \ 0.1]\)], "Input"],
+
+Cell[BoxData[
+    \({0.9983341664682815`, 0.9933466539753061`, 0.9850673555377986`, 
+      0.9735458557716263`, 0.958851077208406`, 0.9410707889917257`, 
+      0.9203109817681301`, 0.8966951136244035`, 0.8703632329194261`, 
+      0.8414709848078965`}\)], "Output"]
+}, Open  ]],
+
+Cell["\<\
+5. Use table to generate a list of f(x)'s and then also a list of ordered \
+pairs [x, f(x)] for x=0, pi/12, 2pi/12, .... pi, where f(x)=sin x \
+\>", "Text"],
+
+Cell[BoxData[
+    \(s[x_]\  := \ Sin[x]\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Table[{x, \ s[x]}, \ {x, \ 0, \ \[Pi], \ \[Pi]/12}]\)], "Input"],
+
+Cell[BoxData[
+    \({{0, 0}, {\[Pi]\/12, \(\(-1\) + \@3\)\/\(2\ \@2\)}, {\[Pi]\/6, 
+        1\/2}, {\[Pi]\/4, 
+        1\/\@2}, {\[Pi]\/3, \@3\/2}, {\(5\ \[Pi]\)\/12, \(1 + \@3\)\/\(2\ \@2\
+\)}, {\[Pi]\/2, 
+        1}, {\(7\ \[Pi]\)\/12, \(1 + \@3\)\/\(2\ \@2\)}, {\(2\ \[Pi]\)\/3, \
+\@3\/2}, {\(3\ \[Pi]\)\/4, 1\/\@2}, {\(5\ \[Pi]\)\/6, 
+        1\/2}, {\(11\ \[Pi]\)\/12, \(\(-1\) + \@3\)\/\(2\ \@2\)}, {\[Pi], 
+        0}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Range[0, \[Pi], \[Pi]/12]\)], "Input"],
+
+Cell[BoxData[
+    \({0, \[Pi]\/12, \[Pi]\/6, \[Pi]\/4, \[Pi]\/3, \(5\ \[Pi]\)\/12, \
+\[Pi]\/2, \(7\ \[Pi]\)\/12, \(2\ \[Pi]\)\/3, \(3\ \[Pi]\)\/4, \(5\ \
+\[Pi]\)\/6, \(11\ \[Pi]\)\/12, \[Pi]}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(f\  /@ \ Range[0, \[Pi], \[Pi]/12]\)], "Input"],
+
+Cell[BoxData[
+    \({1, 1\/\(1 + \[Pi]\/12\), 1\/\(1 + \[Pi]\/6\), 1\/\(1 + \[Pi]\/4\), 
+      1\/\(1 + \[Pi]\/3\), 1\/\(1 + \(5\ \[Pi]\)\/12\), 1\/\(1 + \[Pi]\/2\), 
+      1\/\(1 + \(7\ \[Pi]\)\/12\), 1\/\(1 + \(2\ \[Pi]\)\/3\), 
+      1\/\(1 + \(3\ \[Pi]\)\/4\), 1\/\(1 + \(5\ \[Pi]\)\/6\), 
+      1\/\(1 + \(11\ \[Pi]\)\/12\), 1\/\(1 + \[Pi]\)}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(zzz[x_]\  := \ {x, \ Sin[x]}\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(zzz\  /@ \ Range[0, \ \[Pi], \ \[Pi]/12]\)], "Input"],
+
+Cell[BoxData[
+    \({{0, 0}, {\[Pi]\/12, \(\(-1\) + \@3\)\/\(2\ \@2\)}, {\[Pi]\/6, 
+        1\/2}, {\[Pi]\/4, 
+        1\/\@2}, {\[Pi]\/3, \@3\/2}, {\(5\ \[Pi]\)\/12, \(1 + \@3\)\/\(2\ \@2\
+\)}, {\[Pi]\/2, 
+        1}, {\(7\ \[Pi]\)\/12, \(1 + \@3\)\/\(2\ \@2\)}, {\(2\ \[Pi]\)\/3, \
+\@3\/2}, {\(3\ \[Pi]\)\/4, 1\/\@2}, {\(5\ \[Pi]\)\/6, 
+        1\/2}, {\(11\ \[Pi]\)\/12, \(\(-1\) + \@3\)\/\(2\ \@2\)}, {\[Pi], 
+        0}}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(f[x_]\  := \ x\^5\  - \ 2\ x\^2\  - \ 3\ x\  + \ 3\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Plot[f[x], \ {x, \ \(-3\), \ 3}]\)], "Input"],
+
+Cell[GraphicsData["PostScript", "\<\
+%!
+%%Creator: Mathematica
+%%AspectRatio: .61803 
+MathPictureStart
+/Mabs {
+Mgmatrix idtransform
+Mtmatrix dtransform
+} bind def
+/Mabsadd { Mabs
+3 -1 roll add
+3 1 roll add
+exch } bind def
+%% Graphics
+%%IncludeResource: font Courier
+%%IncludeFont: Courier
+/Courier findfont 10  scalefont  setfont
+% Scaling calculations
+0.5 0.15873 0.267371 0.0287974 [
+[.02381 .25487 -6 -9 ]
+[.02381 .25487 6 0 ]
+[.18254 .25487 -6 -9 ]
+[.18254 .25487 6 0 ]
+[.34127 .25487 -6 -9 ]
+[.34127 .25487 6 0 ]
+[.65873 .25487 -3 -9 ]
+[.65873 .25487 3 0 ]
+[.81746 .25487 -3 -9 ]
+[.81746 .25487 3 0 ]
+[.97619 .25487 -3 -9 ]
+[.97619 .25487 3 0 ]
+[.4875 .12338 -12 -4.5 ]
+[.4875 .12338 0 4.5 ]
+[.4875 .41136 -6 -4.5 ]
+[.4875 .41136 0 4.5 ]
+[.4875 .55534 -12 -4.5 ]
+[.4875 .55534 0 4.5 ]
+[ 0 0 0 0 ]
+[ 1 .61803 0 0 ]
+] MathScale
+% Start of Graphics
+1 setlinecap
+1 setlinejoin
+newpath
+0 g
+.25 Mabswid
+[ ] 0 setdash
+.02381 .26737 m
+.02381 .27362 L
+s
+[(-3)] .02381 .25487 0 1 Mshowa
+.18254 .26737 m
+.18254 .27362 L
+s
+[(-2)] .18254 .25487 0 1 Mshowa
+.34127 .26737 m
+.34127 .27362 L
+s
+[(-1)] .34127 .25487 0 1 Mshowa
+.65873 .26737 m
+.65873 .27362 L
+s
+[(1)] .65873 .25487 0 1 Mshowa
+.81746 .26737 m
+.81746 .27362 L
+s
+[(2)] .81746 .25487 0 1 Mshowa
+.97619 .26737 m
+.97619 .27362 L
+s
+[(3)] .97619 .25487 0 1 Mshowa
+.125 Mabswid
+.05556 .26737 m
+.05556 .27112 L
+s
+.0873 .26737 m
+.0873 .27112 L
+s
+.11905 .26737 m
+.11905 .27112 L
+s
+.15079 .26737 m
+.15079 .27112 L
+s
+.21429 .26737 m
+.21429 .27112 L
+s
+.24603 .26737 m
+.24603 .27112 L
+s
+.27778 .26737 m
+.27778 .27112 L
+s
+.30952 .26737 m
+.30952 .27112 L
+s
+.37302 .26737 m
+.37302 .27112 L
+s
+.40476 .26737 m
+.40476 .27112 L
+s
+.43651 .26737 m
+.43651 .27112 L
+s
+.46825 .26737 m
+.46825 .27112 L
+s
+.53175 .26737 m
+.53175 .27112 L
+s
+.56349 .26737 m
+.56349 .27112 L
+s
+.59524 .26737 m
+.59524 .27112 L
+s
+.62698 .26737 m
+.62698 .27112 L
+s
+.69048 .26737 m
+.69048 .27112 L
+s
+.72222 .26737 m
+.72222 .27112 L
+s
+.75397 .26737 m
+.75397 .27112 L
+s
+.78571 .26737 m
+.78571 .27112 L
+s
+.84921 .26737 m
+.84921 .27112 L
+s
+.88095 .26737 m
+.88095 .27112 L
+s
+.9127 .26737 m
+.9127 .27112 L
+s
+.94444 .26737 m
+.94444 .27112 L
+s
+.25 Mabswid
+0 .26737 m
+1 .26737 L
+s
+.5 .12338 m
+.50625 .12338 L
+s
+[(-5)] .4875 .12338 1 0 Mshowa
+.5 .41136 m
+.50625 .41136 L
+s
+[(5)] .4875 .41136 1 0 Mshowa
+.5 .55534 m
+.50625 .55534 L
+s
+[(10)] .4875 .55534 1 0 Mshowa
+.125 Mabswid
+.5 .15218 m
+.50375 .15218 L
+s
+.5 .18098 m
+.50375 .18098 L
+s
+.5 .20978 m
+.50375 .20978 L
+s
+.5 .23857 m
+.50375 .23857 L
+s
+.5 .29617 m
+.50375 .29617 L
+s
+.5 .32497 m
+.50375 .32497 L
+s
+.5 .35376 m
+.50375 .35376 L
+s
+.5 .38256 m
+.50375 .38256 L
+s
+.5 .44016 m
+.50375 .44016 L
+s
+.5 .46895 m
+.50375 .46895 L
+s
+.5 .49775 m
+.50375 .49775 L
+s
+.5 .52655 m
+.50375 .52655 L
+s
+.5 .09459 m
+.50375 .09459 L
+s
+.5 .06579 m
+.50375 .06579 L
+s
+.5 .03699 m
+.50375 .03699 L
+s
+.5 .00819 m
+.50375 .00819 L
+s
+.5 .58414 m
+.50375 .58414 L
+s
+.5 .61294 m
+.50375 .61294 L
+s
+.25 Mabswid
+.5 0 m
+.5 .61803 L
+s
+0 0 m
+1 0 L
+1 .61803 L
+0 .61803 L
+closepath
+clip
+newpath
+.5 Mabswid
+.24003 0 m
+.2414 .01109 L
+.26243 .13775 L
+.28196 .22292 L
+.30026 .28042 L
+.31064 .30528 L
+.32051 .32456 L
+.33903 .35126 L
+.34862 .36105 L
+.35884 .36902 L
+.36848 .37456 L
+.37723 .37816 L
+.3821 .37965 L
+.38725 .38086 L
+.39165 .38163 L
+.39414 .38196 L
+.39647 .38221 L
+.39776 .38232 L
+.39917 .38242 L
+.40041 .38249 L
+.40173 .38255 L
+.40291 .38259 L
+.40422 .38262 L
+.4054 .38263 L
+.40652 .38263 L
+.40784 .38261 L
+.4085 .38259 L
+.40922 .38257 L
+.41051 .38252 L
+.4117 .38246 L
+.41441 .38229 L
+.41729 .38204 L
+.42262 .3814 L
+.42753 .38063 L
+.43864 .3783 L
+.44843 .37565 L
+.45879 .37228 L
+.49668 .35555 L
+.53702 .3305 L
+.57584 .30005 L
+.61712 .26496 L
+.63775 .24959 L
+.64779 .24355 L
+.65688 .23928 L
+.66147 .23765 L
+.66388 .23696 L
+.66642 .23636 L
+.66865 .23595 L
+.66984 .23577 L
+.6711 .23563 L
+Mistroke
+.67227 .23552 L
+.67333 .23546 L
+.67439 .23542 L
+.6754 .23542 L
+.67654 .23544 L
+.67779 .23551 L
+.67909 .23562 L
+.68031 .23578 L
+.6825 .23616 L
+.68485 .23673 L
+.68747 .23757 L
+.69021 .23869 L
+.69512 .24137 L
+.70014 .24504 L
+.70469 .24928 L
+.7149 .26223 L
+.72436 .27907 L
+.73328 .29985 L
+.74303 .32878 L
+.75334 .3674 L
+.7718 .46091 L
+.79142 .60168 L
+Mfstroke
+.79142 .60168 m
+.79309 .61803 L
+s
+% End of Graphics
+MathPictureEnd
+\
+\>"], "Graphics",
+  ImageSize->{288, 177.938},
+  ImageMargins->{{43, 0}, {0, 0}},
+  ImageRegion->{{0, 1}, {0, 1}},
+  ImageCache->GraphicsData["Bitmap", "\<\
+CF5dJ6E]HGAYHf4PAg9QL6QYHg<PAVmbKF5d0`40004P0000/B000`400?l00000o`00003oA@3oool0
+0`000000oooo0?ooo`170?ooo`030000003oool0oooo08h0oooo00150?ooo`030000003oool0oooo
+04L0oooo00<000000?ooo`3oool0SP3oool004D0oooo00<000000?ooo`3oool0A`3oool2000008l0
+oooo00150?ooo`030000003oool0oooo04L0oooo00<000000?ooo`3oool0SP3oool004D0oooo00<0
+00000?ooo`3oool0A`3oool00`000000oooo0?ooo`2>0?ooo`00A@3oool00`000000oooo0?ooo`17
+0?ooo`030000003oool0oooo08h0oooo00150?ooo`030000003oool0oooo04L0oooo00<000000?oo
+o`3oool0SP3oool004H0oooo00<000000?ooo`3oool0AP3oool00`000000oooo0?ooo`2>0?ooo`00
+AP3oool00`000000oooo0?ooo`160?ooo`030000003oool0oooo08h0oooo00160?ooo`030000003o
+ool0oooo04H0oooo00<000000?ooo`3oool0SP3oool004H0oooo00<000000?ooo`3oool0AP3oool2
+000008l0oooo00160?ooo`030000003oool0oooo04H0oooo00<000000?ooo`3oool0SP3oool004H0
+oooo00<000000?ooo`3oool0AP3oool00`000000oooo0?ooo`2>0?ooo`00A`3oool00`000000oooo
+0?ooo`150?ooo`030000003oool0oooo08h0oooo00170?ooo`030000003oool0oooo04D0oooo00<0
+00000?ooo`3oool0SP3oool004L0oooo00<000000?ooo`3oool0A@3oool00`000000oooo0?ooo`2>
+0?ooo`00A`3oool00`000000oooo0?ooo`150?ooo`030000003oool0oooo08h0oooo00170?ooo`03
+0000003oool0oooo04D0oooo00<000000?ooo`3oool0SP3oool004L0oooo00<000000?ooo`3oool0
+A@3oool2000008l0oooo00180?ooo`030000003oool0oooo04@0oooo00<000000?ooo`3oool0SP3o
+ool004P0oooo00<000000?ooo`3oool0A03oool00`000000oooo0?ooo`2>0?ooo`00B03oool00`00
+0000oooo0?ooo`140?ooo`030000003oool0oooo08h0oooo00180?ooo`030000003oool0oooo04@0
+oooo00<000000?ooo`3oool0SP3oool004P0oooo00<000000?ooo`3oool0A03oool00`000000oooo
+0?ooo`2>0?ooo`00B03oool00`000000oooo0?ooo`140?ooo`030000003oool0oooo08h0oooo0019
+0?ooo`030000003oool0oooo04<0oooo00<000000?ooo`3oool0SP3oool004T0oooo00<000000?oo
+o`3oool0@`3oool00`000000oooo0?ooo`2>0?ooo`00B@3oool00`000000oooo0?ooo`130?ooo`80
+0000S`3oool004T0oooo00<000000?ooo`3oool0@`3oool00`000000oooo0?ooo`2>0?ooo`00B@3o
+ool00`000000oooo0?ooo`130?ooo`030000003oool0oooo08h0oooo00190?ooo`030000003oool0
+oooo04<0oooo00<000000?ooo`3oool0SP3oool004X0oooo00<000000?ooo`3oool0@P3oool00`00
+0000oooo0?ooo`2>0?ooo`00BP3oool00`000000oooo0?ooo`120?ooo`030000003oool0oooo08h0
+oooo001:0?ooo`030000003oool0oooo03X0oooo0P0000060?ooo`030000003oool0oooo08h0oooo
+001:0?ooo`030000003oool0oooo03T0oooo00@000000?ooo`3oool000001@3oool00`000000oooo
+0?ooo`2>0?ooo`00BP3oool00`000000oooo0?ooo`0l0?ooo`030000003oool0oooo00<0oooo0`00
+002>0?ooo`00BP3oool00`000000oooo0?ooo`0c0?ooo`@000000`3oool2000000H0oooo00<00000
+0?ooo`3oool0SP3oool004/0oooo00<000000?ooo`3oool0>@3oool00`000000oooo0?ooo`050?oo
+o`030000003oool0oooo08h0oooo001;0?ooo`030000003oool0oooo03T0oooo0`0000050?ooo`03
+0000003oool0oooo08h0oooo001;0?ooo`030000003oool0oooo0440oooo00<000000?ooo`3oool0
+SP3oool004/0oooo00<000000?ooo`3oool0@@3oool00`000000oooo0?ooo`2>0?ooo`00B`3oool0
+0`000000oooo0?ooo`110?ooo`030000003oool0oooo08h0oooo001<0?ooo`030000003oool0oooo
+0400oooo00<000000?ooo`3oool0SP3oool004`0oooo00<000000?ooo`3oool0@03oool2000008l0
+oooo001<0?ooo`030000003oool0oooo0400oooo00<000000?ooo`3oool0SP3oool004`0oooo00<0
+00000?ooo`3oool0@03oool00`000000oooo0?ooo`2>0?ooo`00C@3oool00`000000oooo0?ooo`0o
+0?ooo`030000003oool0oooo08h0oooo001=0?ooo`030000003oool0oooo03l0oooo00<000000?oo
+o`3oool0SP3oool004d0oooo00<000000?ooo`3oool0?`3oool00`000000oooo0?ooo`2>0?ooo`00
+C@3oool00`000000oooo0?ooo`0o0?ooo`030000003oool0oooo08h0oooo001>0?ooo`030000003o
+ool0oooo03h0oooo00<000000?ooo`3oool0SP3oool004h0oooo00<000000?ooo`3oool0?P3oool2
+000008l0oooo001>0?ooo`030000003oool0oooo03h0oooo00<000000?ooo`3oool0SP3oool004h0
+oooo00<000000?ooo`3oool0?P3oool00`000000oooo0?ooo`2>0?ooo`00C`3oool00`000000oooo
+0?ooo`0m0?ooo`030000003oool0oooo08h0oooo001?0?ooo`030000003oool0oooo03d0oooo00<0
+00000?ooo`3oool0SP3oool004l0oooo00<000000?ooo`3oool0?@3oool00`000000oooo0?ooo`2>
+0?ooo`00C`3oool00`000000oooo0?ooo`0m0?ooo`030000003oool0oooo08h0oooo001@0?ooo`03
+0000003oool0oooo03`0oooo00<000000?ooo`3oool0SP3oool00500oooo00<000000?ooo`3oool0
+?03oool00`000000oooo0?ooo`2>0?ooo`00D03oool00`000000oooo0?ooo`0l0?ooo`800000S`3o
+ool00500oooo00<000000?ooo`3oool0?03oool00`000000oooo0?ooo`2>0?ooo`00D@3oool00`00
+0000oooo0?ooo`0k0?ooo`030000003oool0oooo08h0oooo001A0?ooo`030000003oool0oooo03/0
+oooo00<000000?ooo`3oool0SP3oool00540oooo00<000000?ooo`3oool0>`3oool00`000000oooo
+0?ooo`2>0?ooo`002@3oool2000002X0oooo1000000I0?ooo`030000003oool0oooo00h0oooo1@00
+000W0?ooo`030000003oool0oooo02P0oooo1@00000Y0?ooo`@00000:P3oool2000000P0oooo0008
+0?ooo`040000003oool0oooo000002T0oooo00<000000?ooo`3oool06P3oool00`000000oooo0?oo
+o`0@0?ooo`030000003oool0oooo02L0oooo00<000000?ooo`3oool0:P3oool00`000000oooo0?oo
+o`0Y0?ooo`030000003oool0oooo02X0oooo00@000000?ooo`3oool000001`3oool000X0oooo00<0
+00000?ooo`3oool0:@3oool00`000000oooo0?ooo`0I0?ooo`030000003oool0oooo0100oooo00<0
+00000?ooo`3oool09`3oool00`000000oooo0?ooo`0Z0?ooo`030000003oool0000000H00000903o
+ool00`000000oooo0?ooo`0[0?ooo`030000003oool0oooo00H0oooo00020?ooo`@000001@3oool0
+0`000000oooo0?ooo`0Q0?ooo`@00000103oool00`000000oooo0?ooo`0H0?ooo`030000003oool0
+oooo00P0oooo100000040?ooo`030000003oool0oooo02L0oooo0P00000Z0?ooo`<000001`3oool0
+0`000000oooo0?ooo`0R0?ooo`030000003oool0oooo02/0oooo00<000000?ooo`3oool01@3oool0
+00P0oooo00@000000?ooo`3oool00000:@3oool010000000oooo0?ooo`00000J0?ooo`030000003o
+ool0oooo00l0oooo00<000000?ooo`3oool09`3oool00`000000oooo0?ooo`0W0?ooo`80000000<0
+oooo0000003oool0203oool200000200oooo00@000000?ooo`3oool00000:@3oool010000000oooo
+0?ooo`0000070?ooo`002@3oool2000002/0oooo0P00000K0?ooo`030000003oool0oooo00h0oooo
+0P00000Y0?ooo`030000003oool0oooo02D0oooo0P0000020?ooo`8000002`3oool00`000000oooo
+0?ooo`0N0?ooo`800000:`3oool2000000P0oooo001C0?ooo`030000003oool0oooo03T0oooo00<0
+00000?ooo`3oool0903oool00`000000oooo0?ooo`0@0?ooo`800000E@3oool005@0oooo00<00000
+0?ooo`3oool0>03oool00`000000oooo0?ooo`0S0?ooo`030000003oool0oooo01<0oooo00<00000
+0?ooo`3oool0DP3oool005@0oooo00<000000?ooo`3oool0>03oool00`000000oooo0?ooo`0Q0?oo
+o`8000005P3oool00`000000oooo0?ooo`1B0?ooo`00E03oool00`000000oooo0?ooo`0h0?ooo`03
+0000003oool0oooo0200oooo00<000000?ooo`3oool05`3oool00`000000oooo0?ooo`1A0?ooo`00
+E@3oool00`000000oooo0?ooo`0g0?ooo`030000003oool0oooo01l0oooo00<000000?ooo`3oool0
+6@3oool00`000000oooo0?ooo`1@0?ooo`00o`00000P00000040oooo00070?ooo`030000003oool0
+oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo0?ooo`060?ooo`030000003oool0
+oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo0?ooo`060?ooo`030000003oool0
+oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo0?ooo`030?ooo`040000003oool0
+oooo000000T0oooo00<000000?ooo`3oool01P3oool00`000000oooo0?ooo`060?ooo`030000003o
+ool0oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo0?ooo`060?ooo`030000003o
+ool0oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo0?ooo`060?ooo`030000003o
+ool0oooo0080oooo00D000000?ooo`3oool0oooo000000080?ooo`030000003oool0oooo00L0oooo
+00<000000?ooo`3oool01@3oool2000000P0oooo00<000000?ooo`3oool01P3oool00`000000oooo
+0?ooo`060?ooo`030000003oool0oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo
+0?ooo`060?ooo`030000003oool0oooo00H0oooo00<000000?ooo`3oool01P3oool00`000000oooo
+0?ooo`060?ooo`001`3oool00`000000oooo0?ooo`0Z0?ooo`030000003oool0oooo01h0oooo00<0
+00000?ooo`3oool02P3oool00`000000oooo0?ooo`0Z0?ooo`030000003oool0oooo01/0oooo0P00
+000=0?ooo`030000003oool0oooo00l0oooo00<000000?ooo`3oool06@3oool00`000000oooo0?oo
+o`0Z0?ooo`030000003oool0oooo00H0oooo001F0?ooo`030000003oool0oooo03H0oooo00<00000
+0?ooo`3oool06P3oool00`000000oooo0?ooo`0P0?ooo`030000003oool0oooo04h0oooo001F0?oo
+o`030000003oool0oooo03H0oooo00<000000?ooo`3oool06@3oool00`000000oooo0?ooo`0Q0?oo
+o`030000003oool0oooo04h0oooo001F0?ooo`030000003oool0oooo03H0oooo00<000000?ooo`3o
+ool0603oool00`000000oooo0?ooo`0S0?ooo`030000003oool0oooo04d0oooo001G0?ooo`030000
+003oool0oooo03D0oooo00<000000?ooo`3oool05`3oool00`000000oooo0?ooo`0T0?ooo`030000
+003oool0oooo04d0oooo001G0?ooo`030000003oool0oooo03D0oooo00<000000?ooo`3oool05@3o
+ool2000002P0oooo00<000000?ooo`3oool0C03oool005P0oooo00<000000?ooo`3oool0=03oool2
+000001D0oooo00<000000?ooo`3oool0:03oool00`000000oooo0?ooo`1<0?ooo`00F03oool00`00
+0000oooo0?ooo`0d0?ooo`030000003oool0oooo01<0oooo00<000000?ooo`3oool0:P3oool00`00
+0000oooo0?ooo`1;0?ooo`00F@3oool00`000000oooo0?ooo`0c0?ooo`030000003oool0oooo0180
+oooo00<000000?ooo`3oool0:`3oool00`000000oooo0?ooo`1;0?ooo`00F@3oool00`000000oooo
+0?ooo`0c0?ooo`030000003oool0oooo0100oooo0P00000_0?ooo`030000003oool0oooo04X0oooo
+001J0?ooo`030000003oool0oooo0380oooo00<000000?ooo`3oool03`3oool00`000000oooo0?oo
+o`0_0?ooo`030000003oool0oooo04X0oooo001J0?ooo`030000003oool0oooo0380oooo00<00000
+0?ooo`3oool03P3oool00`000000oooo0?ooo`0`0?ooo`030000003oool0oooo04X0oooo001K0?oo
+o`030000003oool0oooo0340oooo00<000000?ooo`3oool03@3oool00`000000oooo0?ooo`0b0?oo
+o`030000003oool0oooo04T0oooo001K0?ooo`030000003oool0oooo0340oooo00<000000?ooo`3o
+ool0303oool00`000000oooo0?ooo`0c0?ooo`030000003oool0oooo04T0oooo001L0?ooo`030000
+003oool0oooo0300oooo00<000000?ooo`3oool02P3oool2000003H0oooo00<000000?ooo`3oool0
+B@3oool005d0oooo00<000000?ooo`3oool0;`3oool2000000X0oooo00<000000?ooo`3oool0=`3o
+ool00`000000oooo0?ooo`180?ooo`00G@3oool00`000000oooo0?ooo`0_0?ooo`030000003oool0
+oooo00P0oooo00<000000?ooo`3oool0>03oool00`000000oooo0?ooo`180?ooo`00GP3oool00`00
+0000oooo0?ooo`0^0?ooo`030000003oool0oooo00H0oooo0P00000k0?ooo`030000003oool0oooo
+04P0oooo001N0?ooo`030000003oool0oooo02h0oooo00<000000?ooo`3oool0103oool2000003h0
+oooo00<000000?ooo`3oool0A`3oool005l0oooo00<000000?ooo`3oool0;@3oool00`000000oooo
+0?ooo`030?ooo`030000003oool0oooo03h0oooo00<000000?ooo`3oool0A`3oool00600oooo00<0
+00000?ooo`3oool0;03oool010000000oooo0?ooo`3oool200000440oooo00<000000?ooo`3oool0
+A`3oool00600oooo00<000000?ooo`3oool0;03oool010000000oooo0000000000130?ooo`030000
+003oool0oooo04L0oooo001Q0?ooo`030000003oool0oooo02/0oooo0P0000160?ooo`030000003o
+ool0oooo04H0oooo001R0?ooo`030000003oool0oooo02P0oooo100000160?ooo`030000003oool0
+oooo04H0oooo001S0?ooo`030000003oool0oooo02D0oooo0P0000020?ooo`030000003oool0oooo
+04D0oooo00<000000?ooo`3oool0AP3oool006@0oooo00<000000?ooo`3oool08P3oool2000000@0
+oooo00<000000?ooo`3oool0A@3oool00`000000oooo0?ooo`160?ooo`00I@3oool200000200oooo
+0P0000060?ooo`030000003oool0oooo04H0oooo00<000000?ooo`3oool0A@3oool006L0oooo00<0
+00000?ooo`3oool06`3oool2000000P0oooo00<000000?ooo`3oool0AP3oool00`000000oooo0?oo
+o`150?ooo`00J03oool00`000000oooo0?ooo`0G0?ooo`<000002P3oool00`000000oooo0?ooo`16
+0?ooo`030000003oool0oooo04D0oooo001Y0?ooo`800000503oool3000000d0oooo00<000000?oo
+o`3oool0AP3oool00`000000oooo0?ooo`150?ooo`00J`3oool3000000h0oooo0`00000@0?ooo`03
+0000003oool0oooo04L0oooo00<000000?ooo`3oool0A03oool006h0oooo3P00000C0?ooo`800000
+B03oool00`000000oooo0?ooo`140?ooo`00S`3oool00`000000oooo0?ooo`170?ooo`030000003o
+ool0oooo04@0oooo002?0?ooo`030000003oool0oooo04L0oooo00<000000?ooo`3oool0A03oool0
+08l0oooo00<000000?ooo`3oool0A`3oool00`000000oooo0?ooo`140?ooo`00S`3oool00`000000
+oooo0?ooo`170?ooo`030000003oool0oooo04@0oooo002?0?ooo`030000003oool0oooo04P0oooo
+00<000000?ooo`3oool0@`3oool008L0oooo0P0000060?ooo`030000003oool0oooo04P0oooo00<0
+00000?ooo`3oool0@`3oool008H0oooo00@000000?ooo`3oool000001@3oool00`000000oooo0?oo
+o`180?ooo`030000003oool0oooo04<0oooo00290?ooo`030000003oool0oooo00<0oooo0`000018
+0?ooo`030000003oool0oooo04<0oooo00270?ooo`8000001P3oool00`000000oooo0?ooo`180?oo
+o`030000003oool0oooo04<0oooo00270?ooo`030000003oool0oooo00D0oooo00<000000?ooo`3o
+ool0B@3oool00`000000oooo0?ooo`120?ooo`00Q`3oool3000000D0oooo00<000000?ooo`3oool0
+B@3oool00`000000oooo0?ooo`120?ooo`00S`3oool00`000000oooo0?ooo`190?ooo`030000003o
+ool0oooo0480oooo002?0?ooo`030000003oool0oooo04T0oooo00<000000?ooo`3oool0@P3oool0
+08l0oooo00<000000?ooo`3oool0B@3oool00`000000oooo0?ooo`120?ooo`00S`3oool00`000000
+oooo0?ooo`1:0?ooo`030000003oool0oooo0440oooo002?0?ooo`030000003oool0oooo04X0oooo
+00<000000?ooo`3oool0@@3oool008l0oooo0P00001;0?ooo`030000003oool0oooo0440oooo002?
+0?ooo`030000003oool0oooo04X0oooo00<000000?ooo`3oool0@@3oool008l0oooo00<000000?oo
+o`3oool0BP3oool00`000000oooo0?ooo`110?ooo`00S`3oool00`000000oooo0?ooo`1:0?ooo`03
+0000003oool0oooo0440oooo002?0?ooo`030000003oool0oooo04/0oooo00<000000?ooo`3oool0
+@03oool008l0oooo00<000000?ooo`3oool0B`3oool00`000000oooo0?ooo`100?ooo`00S`3oool0
+0`000000oooo0?ooo`1;0?ooo`030000003oool0oooo0400oooo002?0?ooo`030000003oool0oooo
+04/0oooo00<000000?ooo`3oool0@03oool008l0oooo0P00001<0?ooo`030000003oool0oooo0400
+oooo002?0?ooo`030000003oool0oooo04/0oooo00<000000?ooo`3oool0@03oool008l0oooo00<0
+00000?ooo`3oool0B`3oool00`000000oooo0?ooo`100?ooo`00S`3oool00`000000oooo0?ooo`1<
+0?ooo`030000003oool0oooo03l0oooo002?0?ooo`030000003oool0oooo04`0oooo00<000000?oo
+o`3oool0?`3oool008l0oooo00<000000?ooo`3oool0C03oool00`000000oooo0?ooo`0o0?ooo`00
+S`3oool00`000000oooo0?ooo`1<0?ooo`030000003oool0oooo03l0oooo002?0?ooo`030000003o
+ool0oooo04`0oooo00<000000?ooo`3oool0?`3oool008l0oooo0P00001=0?ooo`030000003oool0
+oooo03l0oooo002?0?ooo`030000003oool0oooo04`0oooo00<000000?ooo`3oool0?`3oool008l0
+oooo00<000000?ooo`3oool0C03oool00`000000oooo0?ooo`0o0?ooo`00S`3oool00`000000oooo
+0?ooo`1=0?ooo`030000003oool0oooo03h0oooo002?0?ooo`030000003oool0oooo04d0oooo00<0
+00000?ooo`3oool0?P3oool008l0oooo00<000000?ooo`3oool0C@3oool00`000000oooo0?ooo`0n
+0?ooo`00S`3oool00`000000oooo0?ooo`1=0?ooo`030000003oool0oooo03h0oooo002?0?ooo`03
+0000003oool0oooo04d0oooo00<000000?ooo`3oool0?P3oool008l0oooo0P00001>0?ooo`030000
+003oool0oooo03h0oooo002?0?ooo`030000003oool0oooo04d0oooo00<000000?ooo`3oool0?P3o
+ool008l0oooo00<000000?ooo`3oool0C@3oool00`000000oooo0?ooo`0n0?ooo`00S`3oool00`00
+0000oooo0?ooo`1>0?ooo`030000003oool0oooo03d0oooo002?0?ooo`030000003oool0oooo04h0
+oooo00<000000?ooo`3oool0?@3oool008l0oooo00<000000?ooo`3oool0CP3oool00`000000oooo
+0?ooo`0m0?ooo`00S`3oool00`000000oooo0?ooo`1>0?ooo`030000003oool0oooo03d0oooo0020
+0?ooo`D000000P3oool2000000H0oooo00<000000?ooo`3oool0CP3oool00`000000oooo0?ooo`0m
+0?ooo`00PP3oool01@000000oooo0?ooo`3oool000000080oooo00<000000?ooo`3oool00`3oool0
+0`000000oooo0?ooo`1>0?ooo`030000003oool0oooo03d0oooo00220?ooo`050000003oool0oooo
+0?ooo`0000000P3oool00`000000oooo0?ooo`030?ooo`<00000CP3oool00`000000oooo0?ooo`0m
+0?ooo`00PP3oool01@000000oooo0?ooo`3oool000000080oooo00<000000?ooo`3oool00`3oool0
+0`000000oooo0?ooo`1>0?ooo`030000003oool0oooo03d0oooo00220?ooo`050000003oool0oooo
+0?ooo`0000000P3oool00`000000oooo0?ooo`030?ooo`030000003oool0oooo04l0oooo00<00000
+0?ooo`3oool0?03oool00840oooo0P0000040?ooo`8000001P3oool00`000000oooo0?ooo`1?0?oo
+o`030000003oool0oooo03`0oooo002?0?ooo`030000003oool0oooo04l0oooo00<000000?ooo`3o
+ool0?03oool008l0oooo00<000000?ooo`3oool0C`3oool00`000000oooo0?ooo`0l0?ooo`00S`3o
+ool00`000000oooo0?ooo`1?0?ooo`030000003oool0oooo03`0oooo002?0?ooo`030000003oool0
+oooo04l0oooo00<000000?ooo`3oool0?03oool008l0oooo0P00001@0?ooo`030000003oool0oooo
+03`0oooo002?0?ooo`030000003oool0oooo04l0oooo00<000000?ooo`3oool0?03oool008l0oooo
+00<000000?ooo`3oool0D03oool00`000000oooo0?ooo`0k0?ooo`00S`3oool00`000000oooo0?oo
+o`1@0?ooo`030000003oool0oooo03/0oooo002?0?ooo`030000003oool0oooo0500oooo00<00000
+0?ooo`3oool0>`3oool008l0oooo00<000000?ooo`3oool0D03oool00`000000oooo0?ooo`0k0?oo
+o`00S`3oool00`000000oooo0?ooo`1@0?ooo`030000003oool0oooo03/0oooo002?0?ooo`030000
+003oool0oooo0500oooo00<000000?ooo`3oool0>`3oool008l0oooo0P00001B0?ooo`030000003o
+ool0oooo03X0oooo002?0?ooo`030000003oool0oooo0540oooo00<000000?ooo`3oool0>P3oool0
+0001\
+\>"],
+  ImageRangeCache->{{{0, 287}, {176.938, 0}} -> {-3.15782, -9.28466, \
+0.0220057, 0.121294}}],
+
+Cell[BoxData[
+    TagBox[\(\[SkeletonIndicator]  Graphics  \[SkeletonIndicator]\),
+      False,
+      Editable->False]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(guesses\  = \ {\(-1.5\), \ 0.5, \ 1.5}\)], "Input"],
+
+Cell[BoxData[
+    \({\(-1.5`\), 0.5`, 1.5`}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(getZero[g_]\  := \ FindRoot[f[x], \ {x, \ g}]\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(getZero[1]\)], "Input"],
+
+Cell[BoxData[
+    \({x \[Rule] 0.7192709228549977`}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(getZero\  /@ \ guesses\)], "Input"],
+
+Cell[BoxData[
+    \({{x \[Rule] \(-1.2880888110906623`\)}, {x \[Rule] 
+          0.7192709228549976`}, {x \[Rule] 1.3740763292836353`}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Append[{1, \ 2, \ 3}, \ 4]\)], "Input"],
+
+Cell[BoxData[
+    \({1, 2, 3, 4}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Prepend[%, \ 0, \ die]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(Prepend::"argrx"\), \(\(:\)\(\ \)\), "\<\"\\!\\(Prepend\\) \
+called with \\!\\(3\\) arguments; \\!\\(2\\) arguments are expected. \
+\\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\
+\\\", ButtonFrame->None, ButtonData:>\\\"General::argrx\\\"]\\)\"\>"}]], \
+"Message"],
+
+Cell[BoxData[
+    \(Prepend[{1, 2, 3, 4}, 0, die]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Prepend[%, \ 0]\)], "Input"],
+
+Cell[BoxData[
+    \({0, 1, 2, 3, 4}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Union[{1, \ 2, \ 3, \ 4}, \ {2, \ 4, \ 5}]\)], "Input"],
+
+Cell[BoxData[
+    \({1, 2, 3, 4, 5}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Join[{1, \ 2, \ 3, \ 4}, \ {2, \ 4, \ 5}]\)], "Input"],
+
+Cell[BoxData[
+    \({1, 2, 3, 4, 2, 4, 5}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Interect[{1, \ 2, \ 3, \ 4}, \ {2, \ 4, \ 5}]\)], "Input"],
+
+Cell[BoxData[
+    \(Interect[{1, 2, 3, 4}, {2, 4, 5}]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Intersect[{1, \ 2, \ 3, \ 4}, \ {2, \ 4, \ 5}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(General::"spell1"\), \(\(:\)\(\ \)\), "\<\"Possible spelling \
+error: new symbol name \\\"\\!\\(Intersect\\)\\\" is similar to existing \
+symbol \\\"\\!\\(Interect\\)\\\". \\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", \
+ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::spell1\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    \(Intersect[{1, 2, 3, 4}, {2, 4, 5}]\)], "Output"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{905, 666},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{
+  "Info3347266212-5458162"->{
+    Cell[3031, 128, 625, 13, 158, "Print",
+      CellTags->"Info3347266212-5458162"]},
+  "Info3347266215-9714174"->{
+    Cell[3739, 149, 399, 10, 63, "Print",
+      CellTags->"Info3347266215-9714174"]}
+  }
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{
+  {"Info3347266212-5458162", 42882, 1198},
+  {"Info3347266215-9714174", 42999, 1201}
+  }
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 26, 0, 95, "Title"],
+Cell[1805, 55, 31, 0, 51, "Subtitle"],
+Cell[1839, 57, 52, 0, 33, "Text"],
+
+Cell[CellGroupData[{
+Cell[1916, 61, 59, 1, 30, "Input"],
+Cell[1978, 64, 46, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2061, 70, 37, 1, 30, "Input"],
+Cell[2101, 73, 49, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2187, 79, 39, 1, 30, "Input"],
+Cell[2229, 82, 66, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2332, 88, 39, 1, 30, "Input"],
+Cell[2374, 91, 116, 2, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2527, 98, 48, 1, 30, "Input"],
+Cell[2578, 101, 72, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2687, 107, 41, 1, 30, "Input"],
+Cell[2731, 110, 58, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2826, 116, 61, 1, 30, "Input"],
+Cell[2890, 119, 58, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2985, 125, 43, 1, 30, "Input"],
+Cell[3031, 128, 625, 13, 158, "Print",
+  CellTags->"Info3347266212-5458162"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3693, 146, 43, 1, 30, "Input"],
+Cell[3739, 149, 399, 10, 63, "Print",
+  CellTags->"Info3347266215-9714174"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4175, 164, 42, 1, 30, "Input"],
+Cell[4220, 167, 65, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4322, 173, 47, 1, 30, "Input"],
+Cell[4372, 176, 56, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4465, 182, 64, 1, 30, "Input"],
+Cell[4532, 185, 122, 2, 48, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4691, 192, 49, 1, 30, "Input"],
+Cell[4743, 195, 122, 2, 48, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4902, 202, 65, 1, 30, "Input"],
+Cell[4970, 205, 301, 4, 37, "Message"],
+Cell[5274, 211, 301, 4, 37, "Message"],
+Cell[5578, 217, 301, 4, 37, "Message"],
+Cell[5882, 223, 327, 5, 37, "Message"],
+Cell[6212, 230, 7851, 120, 2290, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[14100, 355, 83, 1, 30, "Input"],
+Cell[14186, 358, 181, 3, 67, "Output"]
+}, Open  ]],
+Cell[14382, 364, 62, 1, 43, "Input"],
+
+Cell[CellGroupData[{
+Cell[14469, 369, 56, 1, 30, "Input"],
+Cell[14528, 372, 116, 2, 108, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[14681, 379, 39, 1, 30, "Input"],
+Cell[14723, 382, 53, 1, 29, "Output"]
+}, Open  ]],
+Cell[14791, 386, 61, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[14877, 391, 39, 1, 30, "Input"],
+Cell[14919, 394, 403, 6, 86, "Output"]
+}, Open  ]],
+Cell[15337, 403, 156, 3, 52, "Text"],
+Cell[15496, 408, 55, 1, 42, "Input"],
+
+Cell[CellGroupData[{
+Cell[15576, 413, 61, 1, 30, "Input"],
+Cell[15640, 416, 53, 1, 42, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15730, 422, 60, 1, 30, "Input"],
+Cell[15793, 425, 150, 2, 76, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15980, 432, 53, 1, 30, "Input"],
+Cell[16036, 435, 80, 1, 42, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16153, 441, 70, 1, 30, "Input"],
+Cell[16226, 444, 264, 4, 48, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16527, 453, 67, 1, 30, "Input"],
+Cell[16597, 456, 325, 5, 110, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16959, 466, 39, 1, 30, "Input"],
+Cell[17001, 469, 325, 5, 110, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[17363, 479, 64, 1, 30, "Input"],
+Cell[17430, 482, 264, 4, 48, "Output"]
+}, Open  ]],
+Cell[17709, 489, 166, 3, 52, "Text"],
+Cell[17878, 494, 52, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[17955, 499, 84, 1, 30, "Input"],
+Cell[18042, 502, 439, 8, 186, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[18518, 515, 58, 1, 30, "Input"],
+Cell[18579, 518, 205, 3, 42, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[18821, 526, 67, 1, 30, "Input"],
+Cell[18891, 529, 361, 5, 51, "Output"]
+}, Open  ]],
+Cell[19267, 537, 61, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[19353, 542, 73, 1, 30, "Input"],
+Cell[19429, 545, 439, 8, 96, "Output"]
+}, Open  ]],
+Cell[19883, 556, 83, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[19991, 561, 65, 1, 30, "Input"],
+Cell[20059, 564, 19554, 501, 186, 4243, 307, "GraphicsData", "PostScript", \
+"Graphics"],
+Cell[39616, 1067, 130, 3, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[39783, 1075, 71, 1, 30, "Input"],
+Cell[39857, 1078, 57, 1, 29, "Output"]
+}, Open  ]],
+Cell[39929, 1082, 78, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[40032, 1087, 43, 1, 30, "Input"],
+Cell[40078, 1090, 65, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[40180, 1096, 55, 1, 30, "Input"],
+Cell[40238, 1099, 149, 2, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[40424, 1106, 59, 1, 30, "Input"],
+Cell[40486, 1109, 46, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[40569, 1115, 55, 1, 30, "Input"],
+Cell[40627, 1118, 324, 5, 22, "Message"],
+Cell[40954, 1125, 63, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[41054, 1131, 48, 1, 30, "Input"],
+Cell[41105, 1134, 49, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[41191, 1140, 75, 1, 30, "Input"],
+Cell[41269, 1143, 49, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[41355, 1149, 74, 1, 30, "Input"],
+Cell[41432, 1152, 55, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[41524, 1158, 78, 1, 30, "Input"],
+Cell[41605, 1161, 67, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[41709, 1167, 79, 1, 30, "Input"],
+Cell[41791, 1170, 365, 5, 22, "Message"],
+Cell[42159, 1177, 68, 1, 29, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
